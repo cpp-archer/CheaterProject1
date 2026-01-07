@@ -9,6 +9,7 @@ public class IaMove : MonoBehaviour
     void Start()
     {
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
-        agent.destination = goal.position;
+        //agent.destination = goal.position;
+        agent.SetDestination(goal.position);  
     }
 }

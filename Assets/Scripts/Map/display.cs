@@ -13,7 +13,8 @@ public class display : MonoBehaviour
     public GameObject terrain;
 
 
-    private Transform[] spawnpoints;
+    public Transform[] spawnpoints;
+
 
 
     void Start()
@@ -41,6 +42,13 @@ public class display : MonoBehaviour
 
             GameObject obj = Instantiate(objSpawn[i]);
             obj.transform.position = spawnPosition;
+
+
+            //spawnpoints[i] = new Vector3(randomX, y, randomZ);
+            //Transform rdmPoint = Instantiate(spawnpoints);
+            //rdmPoint.position = spawnpoints;
+
+
 
 
             //float randomX = Random.Range(origin.x, origin.x + sizeTerrain.x);

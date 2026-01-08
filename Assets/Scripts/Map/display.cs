@@ -5,7 +5,7 @@ public class display : MonoBehaviour
 {
     public GameObject[] objSpawn;
     public GameObject terrain;
-    public static Transform[] spawnpoints;
+    public Transform[] spawnpoints;
 
     void Start()
     {

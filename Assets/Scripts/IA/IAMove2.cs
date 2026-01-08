@@ -10,7 +10,7 @@ public class IAMove2 : MonoBehaviour
     public Transform[] points;
     private int destPoint = 0;
     private NavMeshAgent agent;
-
+    
 
     void Start()
     {
@@ -20,6 +20,8 @@ public class IAMove2 : MonoBehaviour
         // between points (i.e. the agent doesn't slow down as it
         // approaches a destination point).
         //agent.autoBraking = false;
+
+
 
         GotoNextPoint();
     }

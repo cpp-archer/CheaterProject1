@@ -1,4 +1,4 @@
-// Patrol.cs
+
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
@@ -10,7 +10,7 @@ public class IAMove2 : MonoBehaviour
     public Transform[] points;
     private int destPoint = 0;
     private NavMeshAgent agent;
-
+    
 
     void Start()
     {
@@ -20,6 +20,8 @@ public class IAMove2 : MonoBehaviour
         // between points (i.e. the agent doesn't slow down as it
         // approaches a destination point).
         //agent.autoBraking = false;
+
+
 
         GotoNextPoint();
     }
@@ -32,11 +34,15 @@ public class IAMove2 : MonoBehaviour
             return;
 
         // Set the agent to go to the currently selected destination.
-        agent.destination = points[destPoint].position;
+        //agent.destination = points[destPoint].position;
+        agent.SetDestination(points[destPoint].position);
 
         // Choose the next point in the array as the destination,
         // cycling to the start if necessary.
-        destPoint = (destPoint + 1);
+        //destPoint = (destPoint + 1)% points.Length;
+
+
+        destPoint = Random.Range(0, points.Length);
     }
 
 

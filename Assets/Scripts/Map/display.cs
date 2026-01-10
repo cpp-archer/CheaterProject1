@@ -1,3 +1,4 @@
+using Unity.AI.Navigation;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -6,10 +7,15 @@ public class display : MonoBehaviour
     public GameObject[] objSpawn;
     public GameObject terrain;
     public Transform[] spawnpoints;
+    private NavMeshSurface navMeshSurface;
 
     void Start()
     {
+   
+
+        navMeshSurface = terrain.GetComponent<NavMeshSurface>();
         GenTerrain();
+        navMeshSurface.BuildNavMesh();
     }
 
     void GenTerrain()
@@ -42,6 +48,6 @@ public class display : MonoBehaviour
 
             spawnpoints[i].position = new Vector3(randomX, randomY, randomZ);
         }
-
+        //navMeshSurface.BuildNavMesh();
     }
 }

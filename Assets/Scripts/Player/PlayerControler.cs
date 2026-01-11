@@ -29,24 +29,28 @@ public class PlayerControler : MonoBehaviour
 
         controller.Move(direction * Time.deltaTime * moveSpeed);
 
-        if(canRotate == true)
+        //if (canRotate == true)
+        //    DogMovement();
+
+        if (clickRef.action.ReadValue<float>() > 0)
             DogMovement();
+
     }
 
-    private void OnClick(InputAction.CallbackContext context)
-    {
-        canRotate = !canRotatke;
-        Debug.Log("OnClick");
-    }
-    private void OnEnable()
-    {
-        clickRef.action.performed+= OnClick;
-    }
+    //private void OnClick(InputAction.CallbackContext context)
+    //{
+    //    canRotate = !canRotate;
+    //    Debug.Log("OnClick");
+    //}
+    //private void OnEnable()
+    //{
+    //    clickRef.action.performed += OnClick;
+    //}
 
-    private void OnDisable()
-    {
-        clickRef.action.performed -= OnClick;
-    }
+    //private void OnDisable()
+    //{
+    //    clickRef.action.performed -= OnClick;
+    //}
     private void DogMovement()
     {
         //player rotation

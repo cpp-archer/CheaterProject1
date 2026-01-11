@@ -5,11 +5,12 @@ using UnityEngine.InputSystem;
 public class PlayerControler : MonoBehaviour
 {
     public InputActionReference moveActionRef; //droite gauche devant derriere
-
+    public InputActionReference lookActionRef;
+    private float _rotateSpeed = 50f;
     private CharacterController controller;
+
     public float moveSpeed = 5f;
 
-    private AudioSource bee;
 
     void Start()
     {
@@ -25,5 +26,17 @@ public class PlayerControler : MonoBehaviour
 
         controller.Move(direction * Time.deltaTime * moveSpeed);
 
+
+        DogMovement();
+    }
+
+    private void DogMovement()
+    {
+        //player rotation
+
+        //float mouseRotation = lookActionRef.controller.MouseRotation.ReadValue<float>();
+        float mouseRotation = lookActionRef.action.ReadValue<float>();
+
+        transform.Rotate(Vector3.up * Time.deltaTime * _rotateSpeed * mouseRotation);
     }
 }

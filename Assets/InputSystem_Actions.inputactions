@@ -82,19 +82,19 @@
                     "name": "Sprint",
                     "type": "Button",
                     "id": "641cd816-40e6-41b4-8c3d-04687c349290",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "move player",
-                    "type": "Button",
+                    "name": "rotate",
+                    "type": "Value",
                     "id": "d58c1d06-2b00-4508-aa01-82308471852a",
-                    "expectedControlType": "",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -485,12 +485,12 @@
                 },
                 {
                     "name": "",
-                    "id": "5797a981-c69c-430a-b680-4ad66b7454f0",
-                    "path": "",
+                    "id": "ac0bc058-40a0-4386-a011-26d5edd957f7",
+                    "path": "<Mouse>/press",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "move player",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "rotate",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

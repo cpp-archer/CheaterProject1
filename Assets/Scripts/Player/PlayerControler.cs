@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,11 +7,13 @@ public class PlayerControler : MonoBehaviour
 {
     public InputActionReference moveActionRef; //droite gauche devant derriere
     public InputActionReference lookActionRef;
+    public InputActionReference clickRef;
     private float _rotateSpeed = 50f;
     private CharacterController controller;
 
     public float moveSpeed = 5f;
 
+    private bool canRotate = false;
 
     void Start()
     {
@@ -26,10 +29,24 @@ public class PlayerControler : MonoBehaviour
 
         controller.Move(direction * Time.deltaTime * moveSpeed);
 
-
-        DogMovement();
+        if(canRotate == true)
+            DogMovement();
     }
 
+    private void OnClick(InputAction.CallbackContext context)
+    {
+        canRotate = !canRotatke;
+        Debug.Log("OnClick");
+    }
+    private void OnEnable()
+    {
+        clickRef.action.performed+= OnClick;
+    }
+
+    private void OnDisable()
+    {
+        clickRef.action.performed -= OnClick;
+    }
     private void DogMovement()
     {
         //player rotation

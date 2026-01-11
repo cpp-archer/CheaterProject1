@@ -95,6 +95,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "okaklik",
+                    "type": "Value",
+                    "id": "d4cb2be6-8a88-41d4-b822-6048c4d369b0",
+                    "expectedControlType": "Integer",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -486,11 +495,22 @@
                 {
                     "name": "",
                     "id": "ac0bc058-40a0-4386-a011-26d5edd957f7",
+                    "path": "<Mouse>/delta/x",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a799d448-2de4-4a56-9e4d-cb496d509b38",
                     "path": "<Mouse>/press",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "rotate",
+                    "groups": "",
+                    "action": "okaklik",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

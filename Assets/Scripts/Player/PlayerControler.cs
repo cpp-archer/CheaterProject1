@@ -8,16 +8,21 @@ public class PlayerControler : MonoBehaviour
     public InputActionReference moveActionRef; //droite gauche devant derriere
     public InputActionReference lookActionRef;
     public InputActionReference clickRef;
-    private float _rotateSpeed = 50f;
+    private float rotateSpeed = 50f;
     private CharacterController controller;
 
-    public float moveSpeed = 5f;
+    public float moveSpeed = 0.5f;
 
     private bool canRotate = false;
+    private Vector3 basePosition;
 
+    private Animator animator;
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        basePosition = controller.transform.position;
+
+        animator = controller.GetComponent<Animator>();
     }
 
     void Update()
@@ -29,12 +34,23 @@ public class PlayerControler : MonoBehaviour
 
         controller.Move(direction * Time.deltaTime * moveSpeed);
 
+
         //if (canRotate == true)
-        //    DogMovement();
+        //    Rotate();
 
         if (clickRef.action.ReadValue<float>() > 0)
-            DogMovement();
+            Rotate();
 
+        if(direction == Vector3.zero)
+        {
+            animator.SetBool("IsWalking", false);
+        }
+        else
+        {
+            //print("move");
+            animator.SetBool("IsWalking", true);
+            basePosition = controller.transform.position;
+        }
     }
 
     //private void OnClick(InputAction.CallbackContext context)
@@ -51,13 +67,13 @@ public class PlayerControler : MonoBehaviour
     //{
     //    clickRef.action.performed -= OnClick;
     //}
-    private void DogMovement()
+    private void Rotate()
     {
         //player rotation
 
         //float mouseRotation = lookActionRef.controller.MouseRotation.ReadValue<float>();
         float mouseRotation = lookActionRef.action.ReadValue<float>();
 
-        transform.Rotate(Vector3.up * Time.deltaTime * _rotateSpeed * mouseRotation);
+        transform.Rotate(Vector3.up * Time.deltaTime * rotateSpeed * mouseRotation);
     }
 }

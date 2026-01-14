@@ -44,7 +44,8 @@ public class PlayerControler : MonoBehaviour
         {
             animator.SetBool("IsWalking", false);
             animator.SetBool("IsBacking", false);
-
+            animator.SetBool("IsRighting", false);
+            animator.SetBool("IsLefting", false);
         }
 
         if (direction == Vector3.forward)
@@ -57,6 +58,17 @@ public class PlayerControler : MonoBehaviour
         if(direction == Vector3.back)
         {
              animator.SetBool("IsBacking", true);
+            basePosition = controller.transform.position;
+        }
+
+        if (direction == Vector3.right)
+        {
+            animator.SetBool("IsRighting", true);
+            basePosition = controller.transform.position;
+        }
+        if (direction == Vector3.left)
+        {
+            animator.SetBool("IsLefting", true);
             basePosition = controller.transform.position;
         }
     }

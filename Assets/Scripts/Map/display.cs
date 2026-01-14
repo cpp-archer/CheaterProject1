@@ -11,8 +11,6 @@ public class display : MonoBehaviour
 
     void Start()
     {
-   
-
         navMeshSurface = terrain.GetComponent<NavMeshSurface>();
         GenTerrain();
         navMeshSurface.BuildNavMesh();

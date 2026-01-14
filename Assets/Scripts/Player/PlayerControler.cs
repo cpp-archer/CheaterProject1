@@ -8,12 +8,13 @@ public class PlayerControler : MonoBehaviour
     public InputActionReference moveActionRef; //droite gauche devant derriere
     public InputActionReference lookActionRef;
     public InputActionReference clickRef;
+
     private float rotateSpeed = 50f;
     private CharacterController controller;
 
     public float moveSpeed = 0.5f;
 
-    //private bool canRotate = false;
+  
     private Vector3 basePosition;
 
     private Animator animator;
@@ -23,6 +24,7 @@ public class PlayerControler : MonoBehaviour
         basePosition = controller.transform.position;
 
         animator = controller.GetComponent<Animator>();
+
     }
 
     void Update()
@@ -35,43 +37,34 @@ public class PlayerControler : MonoBehaviour
         controller.Move(direction * Time.deltaTime * moveSpeed);
 
 
-        //if (canRotate == true)
-        //    Rotate();
-
         if (clickRef.action.ReadValue<float>() > 0)
             Rotate();
 
-        if(direction == Vector3.zero)
+        if (direction == Vector3.zero)
         {
             animator.SetBool("IsWalking", false);
+            animator.SetBool("IsBacking", false);
+
         }
-        else
+
+        if (direction == Vector3.forward)
         {
             //print("move");
             animator.SetBool("IsWalking", true);
             basePosition = controller.transform.position;
         }
+
+        if(direction == Vector3.back)
+        {
+             animator.SetBool("IsBacking", true);
+            basePosition = controller.transform.position;
+        }
     }
 
-    //private void OnClick(InputAction.CallbackContext context)
-    //{
-    //    canRotate = !canRotate;
-    //    Debug.Log("OnClick");
-    //}
-    //private void OnEnable()
-    //{
-    //    clickRef.action.performed += OnClick;
-    //}
-
-    //private void OnDisable()
-    //{
-    //    clickRef.action.performed -= OnClick;
-    //}
+  
     private void Rotate()
     {
-        //player rotation
 
-        //float mouseRotation = lookActionRef.controller.MouseRotation.ReadValue<float>();
         float mouseRotation = lookActionRef.action.ReadValue<float>();
 
         transform.Rotate(Vector3.up * Time.deltaTime * rotateSpeed * mouseRotation);

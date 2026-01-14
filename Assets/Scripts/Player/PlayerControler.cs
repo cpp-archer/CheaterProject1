@@ -18,23 +18,28 @@ public class PlayerControler : MonoBehaviour
     private Vector3 basePosition;
 
     private Animator animator;
+
+    //public AnimationClip anim;
     void Start()
     {
         controller = GetComponent<CharacterController>();
         basePosition = controller.transform.position;
 
         animator = controller.GetComponent<Animator>();
-
+       // anim.speed = 5;
     }
 
     void Update()
     {
         Vector2 stickDirection = moveActionRef.action.ReadValue<Vector2>();
 
-        //g d a ar
+        ////g d a ar
         Vector3 direction = new Vector3(stickDirection.x, 0, stickDirection.y);
 
-        controller.Move(direction * Time.deltaTime * moveSpeed);
+
+        //comm pour pas que jme deplace en + de l'animation
+        //controller.Move(direction * Time.deltaTime * moveSpeed);
+
 
 
         if (clickRef.action.ReadValue<float>() > 0)

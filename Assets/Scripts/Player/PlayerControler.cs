@@ -13,7 +13,7 @@ public class PlayerControler : MonoBehaviour
 
     public float moveSpeed = 0.5f;
 
-    private bool canRotate = false;
+    //private bool canRotate = false;
     private Vector3 basePosition;
 
     private Animator animator;

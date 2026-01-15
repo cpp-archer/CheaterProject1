@@ -1,15 +1,14 @@
 using Unity.AI.Navigation;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class display : MonoBehaviour
+public class display2 : MonoBehaviour
 {
     public GameObject[] objSpawn;
-    public GameObject terrain;
+    public Terrain terrain;
     public Transform[] spawnpoints;
     private NavMeshSurface navMeshSurface;
 
-    void Awake()
+    void Start()
     {
         navMeshSurface = terrain.GetComponent<NavMeshSurface>();
         GenTerrain();
@@ -38,7 +37,7 @@ public class display : MonoBehaviour
             obj.transform.position = spawnPosition;
         }
 
-        for(int i=0; i < spawnpoints.Length; i++)
+        for (int i = 0; i < spawnpoints.Length; i++)
         {
             float randomX = Random.Range(bounds.min.x, bounds.max.x);
             float randomZ = Random.Range(bounds.min.z, bounds.max.z);
@@ -49,3 +48,4 @@ public class display : MonoBehaviour
         //navMeshSurface.BuildNavMesh();
     }
 }
+

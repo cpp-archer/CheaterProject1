@@ -53,6 +53,8 @@ public class PlayerControler : MonoBehaviour
             animator.SetBool("IsLefting", false);
         }
 
+        controller.transform.eulerAngles = new Vector3(0, 0, 0);
+
         if (direction == Vector3.forward)
         {
             //print("move");
@@ -64,17 +66,20 @@ public class PlayerControler : MonoBehaviour
         {
              animator.SetBool("IsBacking", true);
             basePosition = controller.transform.position;
+            
         }
 
         if (direction == Vector3.right)
         {
             animator.SetBool("IsRighting", true);
             basePosition = controller.transform.position;
+            controller.transform.eulerAngles = new Vector3(0, 5, 0); //sinon elle se taille
         }
         if (direction == Vector3.left)
         {
             animator.SetBool("IsLefting", true);
             basePosition = controller.transform.position;
+            controller.transform.eulerAngles = new Vector3(0, -19, 0);
         }
     }
 

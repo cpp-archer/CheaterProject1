@@ -8,70 +8,80 @@ public class PlayerControler : MonoBehaviour
     public InputActionReference moveActionRef; //droite gauche devant derriere
     public InputActionReference lookActionRef;
     public InputActionReference clickRef;
+
     private float rotateSpeed = 50f;
     private CharacterController controller;
 
     public float moveSpeed = 0.5f;
 
-    //private bool canRotate = false;
+  
     private Vector3 basePosition;
 
     private Animator animator;
+
+    //public AnimationClip anim;
     void Start()
     {
         controller = GetComponent<CharacterController>();
         basePosition = controller.transform.position;
 
         animator = controller.GetComponent<Animator>();
+       // anim.speed = 5;
     }
 
     void Update()
     {
         Vector2 stickDirection = moveActionRef.action.ReadValue<Vector2>();
 
-        //g d a ar
+        ////g d a ar
         Vector3 direction = new Vector3(stickDirection.x, 0, stickDirection.y);
 
-        controller.Move(direction * Time.deltaTime * moveSpeed);
+
+        //comm pour pas que jme deplace en + de l'animation
+        //controller.Move(direction * Time.deltaTime * moveSpeed);
 
 
-        //if (canRotate == true)
-        //    Rotate();
 
         if (clickRef.action.ReadValue<float>() > 0)
             Rotate();
 
-        if(direction == Vector3.zero)
+        if (direction == Vector3.zero)
         {
             animator.SetBool("IsWalking", false);
+            animator.SetBool("IsBacking", false);
+            animator.SetBool("IsRighting", false);
+            animator.SetBool("IsLefting", false);
         }
-        else
+
+        if (direction == Vector3.forward)
         {
             //print("move");
             animator.SetBool("IsWalking", true);
             basePosition = controller.transform.position;
         }
+
+        if(direction == Vector3.back)
+        {
+             animator.SetBool("IsBacking", true);
+            basePosition = controller.transform.position;
+        }
+
+        if (direction == Vector3.right)
+        {
+            animator.SetBool("IsRighting", true);
+            basePosition = controller.transform.position;
+        }
+        if (direction == Vector3.left)
+        {
+            animator.SetBool("IsLefting", true);
+            basePosition = controller.transform.position;
+        }
     }
 
-    //private void OnClick(InputAction.CallbackContext context)
-    //{
-    //    canRotate = !canRotate;
-    //    Debug.Log("OnClick");
-    //}
-    //private void OnEnable()
-    //{
-    //    clickRef.action.performed += OnClick;
-    //}
-
-    //private void OnDisable()
-    //{
-    //    clickRef.action.performed -= OnClick;
-    //}
+  
     private void Rotate()
     {
-        //player rotation
 
-        //float mouseRotation = lookActionRef.controller.MouseRotation.ReadValue<float>();
         float mouseRotation = lookActionRef.action.ReadValue<float>();
 
         transform.Rotate(Vector3.up * Time.deltaTime * rotateSpeed * mouseRotation);

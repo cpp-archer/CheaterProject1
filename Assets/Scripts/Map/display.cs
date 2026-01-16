@@ -9,7 +9,7 @@ public class display : MonoBehaviour
     public Transform[] spawnpoints;
     private NavMeshSurface navMeshSurface;
 
-    void Start()
+    void Awake()
     {
         navMeshSurface = terrain.GetComponent<NavMeshSurface>();
         GenTerrain();

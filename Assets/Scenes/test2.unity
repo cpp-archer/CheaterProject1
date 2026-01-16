@@ -1295,7 +1295,7 @@ MonoBehaviour:
   moveActionRef: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   lookActionRef: {fileID: -9043991227335500799, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   clickRef: {fileID: -2425766710235386675, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  moveSpeed: 1
+  moveSpeed: 10
 --- !u!4 &1533978948 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5d8e99dbc4e6fce4faab26f965c26a56, type: 3}

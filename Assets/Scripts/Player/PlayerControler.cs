@@ -55,7 +55,7 @@ public class PlayerControler : MonoBehaviour
         }
 
         //if(!rotated)
-            controller.transform.eulerAngles = new Vector3(0, 0, 0);
+        //controller.transform.eulerAngles = new Vector3(0, 0, 0);
 
         if (direction == Vector3.forward)
         {
@@ -77,22 +77,22 @@ public class PlayerControler : MonoBehaviour
             animator.SetBool("IsRighting", true);
             //basePosition = controller.transform.position;
 
-            //if (clickRef.action.ReadValue<float>() == 0 && !rotated)
-            if (!rotated)
+            //if (!rotated)
+            if (clickRef.action.ReadValue<float>() == 0 && !rotated)
                 controller.transform.eulerAngles = new Vector3(0, 5, 0); //sinon elle se taille
-            //else if (clickRef.action.ReadValue<float>() > 0)
-            //    Rotate();
+            else if (clickRef.action.ReadValue<float>() > 0)
+                Rotate();
         }
         else if (direction == Vector3.left)
         {
             animator.SetBool("IsLefting", true);
             //basePosition = controller.transform.position;
 
-           // if (clickRef.action.ReadValue<float>() == 0 && !rotated)
-           if(!rotated)
+            //if (!rotated)
+            if (clickRef.action.ReadValue<float>() == 0 && !rotated)
                 controller.transform.eulerAngles = new Vector3(0, -19, 0);
-            //else if(clickRef.action.ReadValue<float>() > 0)
-            //    Rotate();
+            else if (clickRef.action.ReadValue<float>() > 0)
+                Rotate();
         }
     }
 

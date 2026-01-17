@@ -526,6 +526,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: ebd863952a2a9384dba6dc78878de1a9, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 5d8e99dbc4e6fce4faab26f965c26a56, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1065,11 +1069,6 @@ MonoBehaviour:
   spawnpoints:
   - {fileID: 694964734}
   - {fileID: 2100882738}
-  - {fileID: 1422009667}
-  - {fileID: 188357031}
-  - {fileID: 589226953}
-  - {fileID: 1800946043}
-  - {fileID: 1698124314}
   grassPrefab: {fileID: 2220765395586634774, guid: ae22825ca4bc0f34fa250b505b3c9693, type: 3}
   numberGrass: 500
 --- !u!114 &1384730030
@@ -1155,7 +1154,6 @@ MonoBehaviour:
   moveActionRef: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   lookActionRef: {fileID: -9043991227335500799, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   clickRef: {fileID: -2425766710235386675, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  moveSpeed: 10
 --- !u!4 &1533978948 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5d8e99dbc4e6fce4faab26f965c26a56, type: 3}

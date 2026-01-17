@@ -18,7 +18,6 @@ public class PlayerControler : MonoBehaviour
     private Vector3 basePosition;
 
     private Animator animator;
-
     //public AnimationClip anim;
     void Start()
     {
@@ -32,19 +31,17 @@ public class PlayerControler : MonoBehaviour
     void Update()
     {
         Vector2 stickDirection = moveActionRef.action.ReadValue<Vector2>();
-
-        ////g d a ar
         Vector3 direction = new Vector3(stickDirection.x, 0, stickDirection.y);
 
-
+       
         //comm pour pas que jme deplace en + de l'animation
         //controller.Move(direction * Time.deltaTime * moveSpeed);
 
 
 
-        if (clickRef.action.ReadValue<float>() > 0)
+        if (clickRef.action.ReadValue<float>() > 0) { 
             Rotate();
-
+        }
         if (direction == Vector3.zero)
         {
             animator.SetBool("IsWalking", false);
@@ -59,27 +56,36 @@ public class PlayerControler : MonoBehaviour
         {
             //print("move");
             animator.SetBool("IsWalking", true);
+            
             basePosition = controller.transform.position;
         }
 
-        if(direction == Vector3.back)
+        else if(direction == Vector3.back)
         {
              animator.SetBool("IsBacking", true);
             basePosition = controller.transform.position;
             
         }
 
-        if (direction == Vector3.right)
+        else if (direction == Vector3.right)
         {
             animator.SetBool("IsRighting", true);
             basePosition = controller.transform.position;
-            controller.transform.eulerAngles = new Vector3(0, 5, 0); //sinon elle se taille
+
+            if(clickRef.action.ReadValue<float>() == 0 )
+                controller.transform.eulerAngles = new Vector3(0, 5, 0); //sinon elle se taille
+            else if (clickRef.action.ReadValue<float>() > 0)
+                Rotate();
         }
-        if (direction == Vector3.left)
+        else if (direction == Vector3.left)
         {
             animator.SetBool("IsLefting", true);
             basePosition = controller.transform.position;
-            controller.transform.eulerAngles = new Vector3(0, -19, 0);
+
+            if (clickRef.action.ReadValue<float>() == 0)
+                controller.transform.eulerAngles = new Vector3(0, -19, 0);
+            else if(clickRef.action.ReadValue<float>() > 0)
+                Rotate();
         }
     }
 

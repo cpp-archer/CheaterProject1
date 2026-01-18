@@ -1152,8 +1152,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControler
   moveActionRef: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  lookActionRef: {fileID: -9043991227335500799, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  rotationRef: {fileID: -9043991227335500799, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   clickRef: {fileID: -2425766710235386675, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  crouchRef: {fileID: 7040659881675835329, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!4 &1533978948 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5d8e99dbc4e6fce4faab26f965c26a56, type: 3}

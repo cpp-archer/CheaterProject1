@@ -10,8 +10,6 @@ public class PlayerControler : MonoBehaviour
     public InputActionReference clickRef;
     public InputActionReference crouchRef; //souris
 
-
-
     private float rotateSpeed = 20f;
     private CharacterController controller;
 
@@ -19,17 +17,23 @@ public class PlayerControler : MonoBehaviour
 
     private bool rotated = false;
 
-    private Vector3 basePosition;
+    //private Vector3 basePosition;
 
     private Animator animator;
+
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        basePosition = controller.transform.position;
+        //basePosition = controller.transform.position;
 
         animator = controller.GetComponent<Animator>();
         // anim.speed = 5;
+
+
+
+
+
     }
 
 
@@ -52,31 +56,24 @@ public class PlayerControler : MonoBehaviour
         //comm pour pas que jme deplace en + de l'animation
         //controller.Move(direction * Time.deltaTime * moveSpeed);
 
-  
 
+        //if (direction == Vector3.zero)
+        //{
         animator.SetBool("IsWalking", false);
         animator.SetBool("IsBacking", false);
         animator.SetBool("IsRighting", false);
         animator.SetBool("IsLefting", false);
-        animator.SetBool("IsCrouched", false);
-
+        //animator.SetBool("IsCrouched", false);
+        //    rotated = false;
+        //}
         if (clickRef.action.ReadValue<float>() > 0)
         {
             Rotate();
         }
-        //if (direction == Vector3.zero)
-        //{
-        //    animator.SetBool("IsWalking", false);
-        //    animator.SetBool("IsBacking", false);
-        //    animator.SetBool("IsRighting", false);
-        //    animator.SetBool("IsLefting", false);
-        //    animator.SetBool("IsCrouched", false);
-
-        //    rotated = false;
-        //}
+       
 
         //if(!rotated)
-        //controller.transform.eulerAngles = new Vector3(0, 0, 0);
+            //controller.transform.eulerAngles = new Vector3(0, 0, 0);
 
         if (direction == Vector3.forward)
         {
@@ -130,6 +127,7 @@ public class PlayerControler : MonoBehaviour
         if (direction == Vector3.zero)
             rotated = false;
 
+
     }
 
 
@@ -147,7 +145,7 @@ public class PlayerControler : MonoBehaviour
 
     //private void Crouch(InputAction.CallbackContext context)
     //{
-    //    animator.SetBool("IsCrouched", true);
+    //    animator.SetBool("IsCrouched", !animator.GetBool("IsCrouched"));
     //    Debug.Log("crouch");
     //}
 }

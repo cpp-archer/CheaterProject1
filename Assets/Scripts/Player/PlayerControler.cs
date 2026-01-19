@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,34 +6,50 @@ using UnityEngine.InputSystem;
 public class PlayerControler : MonoBehaviour
 {
     public InputActionReference moveActionRef; //droite gauche devant derriere
-    public InputActionReference lookActionRef;
+    public InputActionReference rotationRef;
     public InputActionReference clickRef;
+    public InputActionReference crouchRef; //souris
 
-    private float rotateSpeed = 50f;
+    private float rotateSpeed = 20f;
     private CharacterController controller;
 
-    public float moveSpeed = 0.5f;
+    // public float moveSpeed = 0.5f;
 
-  
-    private Vector3 basePosition;
+    private bool rotated = false;
+
+    //private Vector3 basePosition;
 
     private Animator animator;
 
-    //public AnimationClip anim;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        basePosition = controller.transform.position;
+        //basePosition = controller.transform.position;
 
         animator = controller.GetComponent<Animator>();
-       // anim.speed = 5;
+        // anim.speed = 5;
+
+
+
+
+
     }
+
+
+    //private void OnEnable()
+    //{
+    //    crouchRef.action.performed += Crouch;
+    //}
+    //private void OnDisable()
+    //{
+    //    crouchRef.action.performed -= Crouch;
+    //}
+
 
     void Update()
     {
         Vector2 stickDirection = moveActionRef.action.ReadValue<Vector2>();
-
-        ////g d a ar
         Vector3 direction = new Vector3(stickDirection.x, 0, stickDirection.y);
 
 
@@ -41,49 +57,95 @@ public class PlayerControler : MonoBehaviour
         //controller.Move(direction * Time.deltaTime * moveSpeed);
 
 
-
+        //if (direction == Vector3.zero)
+        //{
+        animator.SetBool("IsWalking", false);
+        animator.SetBool("IsBacking", false);
+        animator.SetBool("IsRighting", false);
+        animator.SetBool("IsLefting", false);
+        //animator.SetBool("IsCrouched", false);
+        //    rotated = false;
+        //}
         if (clickRef.action.ReadValue<float>() > 0)
-            Rotate();
-
-        if (direction == Vector3.zero)
         {
-            animator.SetBool("IsWalking", false);
-            animator.SetBool("IsBacking", false);
-            animator.SetBool("IsRighting", false);
-            animator.SetBool("IsLefting", false);
+            Rotate();
         }
+       
+
+        //if(!rotated)
+            //controller.transform.eulerAngles = new Vector3(0, 0, 0);
 
         if (direction == Vector3.forward)
         {
             //print("move");
             animator.SetBool("IsWalking", true);
-            basePosition = controller.transform.position;
+
+            if (clickRef.action.ReadValue<float>() == 0 && !rotated)
+                controller.transform.eulerAngles = new Vector3(0, 0, 0);
+
+            //basePosition = controller.transform.position;
         }
 
-        if(direction == Vector3.back)
+         if (direction == Vector3.back)
         {
-             animator.SetBool("IsBacking", true);
-            basePosition = controller.transform.position;
+            animator.SetBool("IsBacking", true);
+
+
+            if (clickRef.action.ReadValue<float>() == 0 && !rotated)
+                controller.transform.eulerAngles = new Vector3(0, 360, 0);
+            //basePosition = controller.transform.position;
+
         }
 
-        if (direction == Vector3.right)
+         if (direction == Vector3.right)
         {
             animator.SetBool("IsRighting", true);
-            basePosition = controller.transform.position;
+            //basePosition = controller.transform.position;
+
+            //if (!rotated)
+            if (clickRef.action.ReadValue<float>() == 0 && !rotated)
+                controller.transform.eulerAngles = new Vector3(0, 5, 0); //sinon elle se taille
+            //else if (clickRef.action.ReadValue<float>() > 0)
+            //    Rotate();
         }
-        if (direction == Vector3.left)
+         if (direction == Vector3.left)
         {
             animator.SetBool("IsLefting", true);
-            basePosition = controller.transform.position;
+            //basePosition = controller.transform.position;
+
+            //if (!rotated)
+            if (clickRef.action.ReadValue<float>() == 0 && !rotated)
+                controller.transform.eulerAngles = new Vector3(0, -19, 0);
+            //else if (clickRef.action.ReadValue<float>() > 0)
+            //    Rotate();
         }
+        if (crouchRef.action.ReadValue<float>() > 0)
+        {
+            animator.SetBool("IsCrouched", true);
+        }
+
+        if (direction == Vector3.zero)
+            rotated = false;
+
+
     }
 
-  
+
     private void Rotate()
     {
 
-        float mouseRotation = lookActionRef.action.ReadValue<float>();
+        float mouseRotation = rotationRef.action.ReadValue<float>();
+
 
         transform.Rotate(Vector3.up * Time.deltaTime * rotateSpeed * mouseRotation);
+
+        rotated = true;
     }
+
+
+    //private void Crouch(InputAction.CallbackContext context)
+    //{
+    //    animator.SetBool("IsCrouched", !animator.GetBool("IsCrouched"));
+    //    Debug.Log("crouch");
+    //}
 }

@@ -30,10 +30,6 @@ public class PlayerControler : MonoBehaviour
         animator = controller.GetComponent<Animator>();
         // anim.speed = 5;
 
-
-
-
-
     }
 
 

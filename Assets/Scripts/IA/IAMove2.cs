@@ -14,6 +14,10 @@ public class IAMove2 : MonoBehaviour
     public float viewDistance = 20f;
     public float viewAngle = 45f;
 
+    private bool playerDetected;
+
+
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -62,7 +66,8 @@ public class IAMove2 : MonoBehaviour
             if (hit.transform == target)
             {
                 Debug.Log("I see you");
-                //playerDetected = true;
+                playerDetected = true;
+                looser();
             }
             else
             {
@@ -85,6 +90,17 @@ public class IAMove2 : MonoBehaviour
             Vector3 dir = Quaternion.Euler(0, angle, 0) * transform.forward;
 
             Debug.DrawRay(transform.position, dir * viewDistance, Color.yellow);
+        }
+    }
+
+
+
+    void looser()
+    {
+        if(playerDetected == true)
+        {
+            agent.SetDestination(target.position);
+
         }
     }
 }

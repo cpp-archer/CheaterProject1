@@ -6,6 +6,7 @@ TagManager:
   tags:
   - player
   - ia
+  - Wall
   layers:
   - Default
   - TransparentFX

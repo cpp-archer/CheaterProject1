@@ -24,6 +24,7 @@ public class PlayerControlerGood : MonoBehaviour
     //anim
     private Animator animator;
 
+   
     private void OnEnable()
     {
         crouchRef.action.Enable();
@@ -41,6 +42,7 @@ public class PlayerControlerGood : MonoBehaviour
 
     void Start()
     {
+      
         controller = GetComponent<CharacterController>();
         animator = controller.GetComponent<Animator>();
         //controller.height = 2f;
@@ -120,5 +122,8 @@ public class PlayerControlerGood : MonoBehaviour
         Debug.Log("pluscrouch");
         crouched = false;
     }
+
+
+  
 }
 

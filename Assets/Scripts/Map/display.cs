@@ -50,6 +50,7 @@ public class display : MonoBehaviour
 
             GameObject obj = Instantiate(objSpawn[i]);
             obj.transform.position = spawnPosition;
+            obj.transform.parent = terrain.transform;
         } 
     }
 
@@ -63,6 +64,7 @@ public class display : MonoBehaviour
             float randomY = bounds.max.y;
 
             spawnpoints[i].position = new Vector3(randomX, randomY, randomZ);
+            spawnpoints[i].transform.parent = terrain.transform;
         }
     }
 

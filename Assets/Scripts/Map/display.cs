@@ -14,9 +14,9 @@ public class display : MonoBehaviour
 
     private Bounds bounds;
 
-    //public GameObject[] ponts; //prefabs de pont
+    public GameObject ponts; //prefabs de pont
 
-    //public Transform[] pontsPos;
+    public Transform[] pontsPos = { };
 
     void Awake()
     {
@@ -29,7 +29,7 @@ public class display : MonoBehaviour
         GenObjets();
         GenBalises();
         // GenGrass();
-        //pagePont();
+        pagePont();
         navMeshSurface.BuildNavMesh();
     }
 
@@ -77,14 +77,17 @@ public class display : MonoBehaviour
     //}
 
 
-    //private void pagePont()
-    //{
-    //    int rdm = Random.Range(0, ponts.Length);
+    private void pagePont()
+    {
+        int rdm = Random.Range(0, pontsPos.Length);
+        print(rdm);
 
-    //    GameObject pontPref = Instantiate(ponts[rdm], pontsPos[rdm].position, pontsPos[rdm].rotation);
+        GameObject pontPref = Instantiate(ponts);
+        pontPref.transform.parent = pontsPos[rdm];
+        pontPref.transform.localPosition = Vector3.zero;
 
-    //    pontPref.transform.parent = transform;
-    //}
+       // pontPref.transform.parent = transform;
+    }
 }
 
 

@@ -10,22 +10,26 @@ public class display : MonoBehaviour
     public GameObject[] objSpawn;
     public Transform[] spawnpoints;
 
-    //public GameObject grassPrefab;
-    //public int numberGrass = 100;
-
     private NavMeshSurface navMeshSurface;
 
     private Bounds bounds;
 
+    //public GameObject[] ponts; //prefabs de pont
+
+    //public Transform[] pontsPos;
+
     void Awake()
     {
+
+        //ponts.SetActive(false);
         navMeshSurface = terrain.GetComponent<NavMeshSurface>();
 
         bounds = terrain.GetComponent<Renderer>().bounds;
 
         GenObjets();
         GenBalises();
-       // GenGrass();
+        // GenGrass();
+        //pagePont();
         navMeshSurface.BuildNavMesh();
     }
 
@@ -63,29 +67,25 @@ public class display : MonoBehaviour
     }
 
 
-    //private void GenGrass(){
-        
-    //    for (int i = 0; i < numberGrass; i++)
+    //private void pagePont()
+    //{
+    //    for(int i =0; i<ponts.Length; i++)
     //    {
-    //        float x = Random.Range(bounds.min.x, bounds.max.x);
-    //        float z = Random.Range(bounds.min.z, bounds.max.z);
-    //        float y = bounds.max.y;
-
-    //        Vector3 pos = new Vector3(x, y, z);
-
-    //        //instianciation
-    //        GameObject grass = Instantiate(grassPrefab);
-    //        grass.transform.position = pos;
-    //        grass.transform.parent = terrain.transform;
-
-    //        //rotate et scale random
-    //        grass.transform.Rotate(0, Random.Range(0f, 360f), 0);
-
-    //        float scale = Random.Range(0.8f, 1.2f);
-    //        grass.transform.localScale *= scale;
+    //        ponts[i].SetActive(true);
     //    }
+
+    //}
+
+
+    //private void pagePont()
+    //{
+    //    int rdm = Random.Range(0, ponts.Length);
+
+    //    GameObject pontPref = Instantiate(ponts[rdm], pontsPos[rdm].position, pontsPos[rdm].rotation);
+
+    //    pontPref.transform.parent = transform;
     //}
 }
 
-    
+
 

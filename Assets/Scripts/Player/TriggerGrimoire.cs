@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
@@ -9,6 +10,10 @@ public class TriggerGrimoire : MonoBehaviour
 
     private Animator animator;
     public GameObject EPanel;
+
+
+    private bool isReading = false;
+    private bool inRange = false;
 
     private void Start()
     {
@@ -21,7 +26,7 @@ public class TriggerGrimoire : MonoBehaviour
         if (other.CompareTag("player"))
         {
             EPanel.SetActive(true);
-
+            inRange = true;
             //UImanager.panel.ShowEPanel(true);
             Debug.Log("okak ouvertAPPUY SUR E PLS");
         }
@@ -31,6 +36,7 @@ public class TriggerGrimoire : MonoBehaviour
      {
         if (other.CompareTag("player"))
         {
+            inRange = false;
             //UImanager.panel.ShowEPanel(false);
             EPanel.SetActive(false);
         }
@@ -46,7 +52,29 @@ public class TriggerGrimoire : MonoBehaviour
     }
     private void ReadGrimoire(InputAction.CallbackContext context)
     {
+
+        if(inRange && !isReading)
+        {
+            StartCoroutine(ReadCoroutine());
+
+            Debug.Log("reding");
+        }
+            
+        //animator.SetBool("isRead", true);
+        
+        
+        
+    }
+
+
+    private IEnumerator ReadCoroutine()
+    {
+        isReading = true;
         animator.SetBool("isRead", true);
         Debug.Log("reding");
+
+        yield return new WaitForSeconds(5);
+        animator.SetBool("isRead", false);
+        isReading = false;
     }
 }

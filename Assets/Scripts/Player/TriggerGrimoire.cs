@@ -8,10 +8,11 @@ public class TriggerGrimoire : MonoBehaviour
     public InputActionReference readActionRef;
 
     private Animator animator;
-
+    public GameObject EPanel;
 
     private void Start()
     {
+        EPanel.SetActive(false);
         animator = GetComponent<Animator>();
         animator.SetBool("isRead", false);
     }
@@ -19,7 +20,9 @@ public class TriggerGrimoire : MonoBehaviour
     {
         if (other.CompareTag("player"))
         {
-            UImanager.panel.ShowEPanel(true);
+            EPanel.SetActive(true);
+
+            //UImanager.panel.ShowEPanel(true);
             Debug.Log("okak ouvertAPPUY SUR E PLS");
         }
     }
@@ -28,8 +31,8 @@ public class TriggerGrimoire : MonoBehaviour
      {
         if (other.CompareTag("player"))
         {
-            UImanager.panel.ShowEPanel(false);
-            //EPanel.SetActive(false);
+            //UImanager.panel.ShowEPanel(false);
+            EPanel.SetActive(false);
         }
     }
 

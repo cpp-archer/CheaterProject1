@@ -93,9 +93,12 @@ public class display : MonoBehaviour
 
         Vector3 grimPos = new Vector3(pontPref.transform.position.x, pontPref.transform.position.y , pontPref.transform.position.z + 1.5f);
 
-        Instantiate(grimoire, grimPos, pontPref.transform.rotation);
 
-       // pontPref.transform.parent = transform;
+        grimoire.transform.position = grimPos;
+        grimoire.transform.rotation = pontPref.transform.rotation;
+        //Instantiate(grimoire, grimPos, pontPref.transform.rotation);
+
+        // pontPref.transform.parent = transform;
     }
 }
 

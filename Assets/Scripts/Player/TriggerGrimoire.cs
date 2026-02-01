@@ -5,13 +5,14 @@ using UnityEngine.InputSystem.EnhancedTouch;
 
 public class TriggerGrimoire : MonoBehaviour
 {
-    //public InputActionReference readActionRef;
+    public InputActionReference readActionRef;
 
     private Animator animator;
 
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
         animator.SetBool("isRead", false);
     }
     private void OnTriggerEnter(Collider other)
@@ -32,14 +33,14 @@ public class TriggerGrimoire : MonoBehaviour
         }
     }
 
-    //private void OnEnable()
-    //{
-    //    readActionRef.action.performed += Read;
-    //}
-    //private void OnDisable()
-    //{
-    //    readActionRef.action.performed -= Read;
-    //}
+    private void OnEnable()
+    {
+        readActionRef.action.performed += ReadGrimoire;
+    }
+    private void OnDisable()
+    {
+        readActionRef.action.performed -= ReadGrimoire;
+    }
     private void ReadGrimoire(InputAction.CallbackContext context)
     {
         animator.SetBool("isRead", true);

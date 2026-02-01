@@ -17,6 +17,7 @@ public class display : MonoBehaviour
     public GameObject ponts; //prefabs de pont
 
     public Transform[] pontsPos = { };
+    public GameObject grimoire;
 
     void Awake()
     {
@@ -81,12 +82,18 @@ public class display : MonoBehaviour
 
     private void pagePont()
     {
+
         int rdm = Random.Range(0, pontsPos.Length);
         print(rdm);
 
         GameObject pontPref = Instantiate(ponts);
         pontPref.transform.parent = pontsPos[rdm];
         pontPref.transform.localPosition = Vector3.zero;
+
+
+        Vector3 grimPos = new Vector3(pontPref.transform.position.x, pontPref.transform.position.y , pontPref.transform.position.z + 1.5f);
+
+        Instantiate(grimoire, grimPos, pontPref.transform.rotation);
 
        // pontPref.transform.parent = transform;
     }

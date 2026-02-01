@@ -21,10 +21,9 @@ public class PlayerControlerGood : MonoBehaviour
     private bool rotated = false;
     private bool crouched = false;
 
-    //anim
+    //animations
     private Animator animator;
 
-   
     private void OnEnable()
     {
         crouchRef.action.Enable();
@@ -42,7 +41,7 @@ public class PlayerControlerGood : MonoBehaviour
 
     void Start()
     {
-      
+        //recuperation 
         controller = GetComponent<CharacterController>();
         animator = controller.GetComponent<Animator>();
         //controller.height = 2f;
@@ -59,9 +58,11 @@ public class PlayerControlerGood : MonoBehaviour
         //crouched = crouchRef.action.ReadValue<float>() > 0;
         //animator.SetBool("IsCrouched", crouched);
 
+        //pas de mouvement si crouched
         if (!crouched)
             controller.Move(moveDirection * Time.deltaTime * moveSpeed);
 
+        //idle
         animator.SetBool("IsWalking", false);
         animator.SetBool("IsBacking", false);
         animator.SetBool("IsRighting", false);
@@ -101,6 +102,7 @@ public class PlayerControlerGood : MonoBehaviour
         //animator.SetBool("IsCrouched", crouchRef.action.ReadValue<float>() > 0);
     }
 
+    //rotate la souris
     private void Rotate()
     {      
         rotated = true;
@@ -109,7 +111,7 @@ public class PlayerControlerGood : MonoBehaviour
         transform.Rotate(Vector3.up * Time.deltaTime * rotateSpeed * mouseRotation);
     }
 
-
+    //crouch et uncrouch
     private void Crouch(InputAction.CallbackContext context)
     {
         animator.SetBool("IsCrouched", true);//!animator.GetBool("IsCrouched"));

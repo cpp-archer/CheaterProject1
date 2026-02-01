@@ -4,38 +4,39 @@ using UnityEngine;
 
 public class display : MonoBehaviour
 {
-
+ 
     public GameObject terrain;
+    private Bounds bounds;
 
     public GameObject[] objSpawn;
     public Transform[] spawnpoints;
 
     private NavMeshSurface navMeshSurface;
 
-    private Bounds bounds;
-
-    public GameObject ponts; //prefabs de pont
-
-    public Transform[] pontsPos = { };
+    //prefab du pont vers grimoire
+    public GameObject ponts;
+    public Transform[] pontsPos = { }; //pont dans une des 3 pos possibles
+    
     public GameObject grimoire;
 
     void Awake()
     {
-
         //ponts.SetActive(false);
         navMeshSurface = terrain.GetComponent<NavMeshSurface>();
 
         bounds = terrain.GetComponent<Renderer>().bounds;
 
+        //generations des elements sur la map
         GenObjets();
         GenBalises();
-        // GenGrass();
         pagePont();
+        // GenGrass();
+
         navMeshSurface.BuildNavMesh();
     }
 
 
-
+    //on genere sur la map les objets pour se cacher à des endoits random
     private void GenObjets()
     {
         //Vector3 sizeTerrain = terrain.transform.localScale;
@@ -56,6 +57,7 @@ public class display : MonoBehaviour
     }
 
 
+    //on genere sur la map les balises de patrouille de li'a
     private void GenBalises() { 
 
         for(int i=0; i < spawnpoints.Length; i++)
@@ -79,7 +81,7 @@ public class display : MonoBehaviour
 
     //}
 
-
+    //on genere le pont a une des 3 pos possible et on deplace le grimoire devant le pont
     private void pagePont()
     {
 

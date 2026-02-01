@@ -16,8 +16,6 @@ public class IAMove2 : MonoBehaviour
 
     private bool playerDetected;
 
-
-
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -63,7 +61,7 @@ public class IAMove2 : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, targetDir, out hit, viewDistance))
         {
-            if (hit.transform == target)
+            if (hit.transform == target) //l'ia nous suit
             {
                 Debug.Log("I see you");
                 playerDetected = true;
@@ -92,9 +90,6 @@ public class IAMove2 : MonoBehaviour
             Debug.DrawRay(transform.position, dir * viewDistance, Color.yellow);
         }
     }
-
-
-
     void looser()
     {
         if(playerDetected == true)

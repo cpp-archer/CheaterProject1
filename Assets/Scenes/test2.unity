@@ -4226,13 +4226,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: A_BookGrimoireFinished
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 4c89b3c66e75dd8458edaeebcca08e4a, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ecd51723b95ef254aacf7e49ad439fe5, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4c89b3c66e75dd8458edaeebcca08e4a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1995568342}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c89b3c66e75dd8458edaeebcca08e4a, type: 3}
 --- !u!1001 &1685169399
 PrefabInstance:
@@ -4858,28 +4859,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4292587933828522431, guid: 4aa7a928cc83c7d49819fe52f53ec261, type: 3}
   m_PrefabInstance: {fileID: 1876339247}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1995568341 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4c89b3c66e75dd8458edaeebcca08e4a, type: 3}
-  m_PrefabInstance: {fileID: 1683314685}
-  m_PrefabAsset: {fileID: 0}
---- !u!111 &1995568342
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1995568341}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Animation: {fileID: 0}
-  m_Animations:
-  - {fileID: -8296183827453133031, guid: 4c89b3c66e75dd8458edaeebcca08e4a, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_UpdateMode: 0
-  m_CullingType: 0
 --- !u!4 &1995568343 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4c89b3c66e75dd8458edaeebcca08e4a, type: 3}

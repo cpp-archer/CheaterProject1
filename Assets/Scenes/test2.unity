@@ -507,7 +507,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &255087854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2323,7 +2323,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &871315821
 Transform:
   m_ObjectHideFlags: 0
@@ -4863,7 +4863,7 @@ MonoBehaviour:
   - {fileID: 694964734}
   - {fileID: 2100882738}
   - {fileID: 1422009667}
-  ponts: {fileID: 3630201119999402505, guid: feb78ce2f4e83f84f9f3067d1c0c1ea1, type: 3}
+  ponts: {fileID: 2602343617676991918, guid: 9ca4231a83e5ac246bcb3874f7ce1968, type: 3}
   pontsPos:
   - {fileID: 1041965132}
   - {fileID: 2126182795}

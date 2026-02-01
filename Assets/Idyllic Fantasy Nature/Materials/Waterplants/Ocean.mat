@@ -120,11 +120,11 @@ Material:
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _CoastOpacity: 0.339
-    - _Coast_Opacity: 0.149
+    - _Coast_Opacity: 0.843
     - _Cull: 2
     - _Cutoff: 0.5
     - _Depth: 2.97
-    - _Depth_Distance: 0.25
+    - _Depth_Distance: 0.675
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _Displacement: 1.2
@@ -141,7 +141,7 @@ Material:
     - _FoamDistance: 0.2
     - _FoamScale: 100
     - _FoamSpeed: 0.5
-    - _Foam_Amount: 0.076
+    - _Foam_Amount: 0.897
     - _Foam_Density: 0.1
     - _Foam_Speed: 0.5
     - _GlossMapScale: 0
@@ -153,7 +153,7 @@ Material:
     - _Metallicness: 0.1
     - _Noise: 10
     - _NormalStrength: 1.56
-    - _Normal_Strength: 0.2
+    - _Normal_Strength: 0.859
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
@@ -173,13 +173,13 @@ Material:
     - _Ripple_Distance: 5.01
     - _Ripple_Fade: 5.2
     - _Ripple_Slimness: 9.7
-    - _Smoothness: 0.7
+    - _Smoothness: 0.723
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
     - _Tiling: 0.5
-    - _Water_Speed: 0.3
+    - _Water_Speed: 0.825
     - _WaveSpeed: 0.5
     - _Wave_Amplitude: 0.03
     - _Wave_Frequency: 0

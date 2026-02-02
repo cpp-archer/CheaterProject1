@@ -11,6 +11,7 @@ public class display : MonoBehaviour
     public GameObject[] objSpawn;
     public Transform[] spawnpoints;
 
+  
     private NavMeshSurface navMeshSurface;
 
     //prefab du pont vers grimoire

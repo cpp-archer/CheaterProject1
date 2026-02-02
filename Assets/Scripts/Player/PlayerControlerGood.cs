@@ -21,6 +21,11 @@ public class PlayerControlerGood : MonoBehaviour
     private bool rotated = false;
     private bool crouched = false;
 
+
+    [SerializeField] float gravite = -20f;
+    [SerializeField] float groundForce = -2f;
+    private float vertical;
+
     //animations
     private Animator animator;
 
@@ -55,12 +60,25 @@ public class PlayerControlerGood : MonoBehaviour
         //selon la rotate du perso
         Vector3 moveDirection = transform.TransformDirection(direction);
 
+        Vector3 velocity = moveDirection * moveSpeed;
+        velocity.y = vertical;
+
+        if (controller.isGrounded)
+        {
+            if(vertical < 0)
+                vertical = groundForce;
+        }
+        else
+        {
+            vertical+= gravite * Time.deltaTime;
+        }
+
         //crouched = crouchRef.action.ReadValue<float>() > 0;
         //animator.SetBool("IsCrouched", crouched);
-
         //pas de mouvement si crouched
         if (!crouched)
-            controller.Move(moveDirection * Time.deltaTime * moveSpeed);
+            controller.Move(velocity * Time.deltaTime);
+            //controller.Move(moveDirection * Time.deltaTime * moveSpeed);
 
         //idle
         animator.SetBool("IsWalking", false);
@@ -107,7 +125,6 @@ public class PlayerControlerGood : MonoBehaviour
     {      
         rotated = true;
         float mouseRotation = rotationRef.action.ReadValue<float>();
-
         transform.Rotate(Vector3.up * Time.deltaTime * rotateSpeed * mouseRotation);
     }
 

@@ -129,6 +129,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: A_BookGrimoireFinished
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4c89b3c66e75dd8458edaeebcca08e4a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 4c89b3c66e75dd8458edaeebcca08e4a, type: 3}
       propertyPath: m_Controller
       value: 
@@ -182,6 +186,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9f5587d992f4734ea8689918a111c9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TriggerGrimoire
+  readActionRef: {fileID: 0}
+  EPanel: {fileID: 0}
 --- !u!4 &897255172558175679 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4c89b3c66e75dd8458edaeebcca08e4a, type: 3}

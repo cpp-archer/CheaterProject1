@@ -6,6 +6,7 @@ public class display : MonoBehaviour
 {
  
     public GameObject terrain;
+    public GameObject terrain2;
     private Bounds bounds;
 
     public GameObject[] objSpawn;
@@ -13,6 +14,7 @@ public class display : MonoBehaviour
 
   
     private NavMeshSurface navMeshSurface;
+    private NavMeshSurface navMesh2;
 
     //prefab du pont vers grimoire
     public GameObject ponts;
@@ -24,6 +26,7 @@ public class display : MonoBehaviour
     {
         //ponts.SetActive(false);
         navMeshSurface = terrain.GetComponent<NavMeshSurface>();
+        navMesh2 = terrain2.GetComponent<NavMeshSurface>();
 
         bounds = terrain.GetComponent<Renderer>().bounds;
 
@@ -34,6 +37,7 @@ public class display : MonoBehaviour
         // GenGrass();
 
         navMeshSurface.BuildNavMesh();
+        navMesh2.BuildNavMesh();
     }
 
 

@@ -63,15 +63,15 @@ public class PlayerControlerGood : MonoBehaviour
         Vector3 velocity = moveDirection * moveSpeed;
         velocity.y = vertical;
 
-        if (controller.isGrounded)
-        {
-            if(vertical < 0)
-                vertical = groundForce;
-        }
-        else
-        {
-            vertical+= gravite * Time.deltaTime;
-        }
+        //if (controller.isGrounded)
+        //{
+        //    if(vertical < 0)
+        //        vertical = groundForce;
+        //}
+        //else
+        //{
+         vertical+= gravite * Time.deltaTime;
+        //}
 
         //crouched = crouchRef.action.ReadValue<float>() > 0;
         //animator.SetBool("IsCrouched", crouched);

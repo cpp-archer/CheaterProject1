@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class display : MonoBehaviour
 {
- 
     public GameObject terrain;
     public GameObject terrain2;
     public GameObject terrainPatrouille;
 
     private Bounds bounds;
     private Bounds boundsBalises;
-    public GameObject[] objSpawn;
+
+    //public GameObject[] objSpawn;
+    public Transform[] objPoints;
+
+
+    public GameObject[] hides;
+    public GameObject[] obstacles;
+
     public Transform[] spawnpoints;
 
   
@@ -50,16 +56,47 @@ public class display : MonoBehaviour
     //on genere sur la map les objets pour se cacher à des endoits random
     private void GenObjets()
     {
-        for (int i = 0; i < objSpawn.Length; i++)
+
+        int nbObj = Random.Range(6, 8);
+
+        bool[] used = new bool[objPoints.Length];
+        //int spawned = 0;
+
+        for (int i = 0; i < nbObj; i++) //for (int i = 0; i < objSpawn.Length; i++)
         {
-            float randomX = Random.Range(bounds.min.x, bounds.max.x);
-            float randomZ = Random.Range(bounds.min.z, bounds.max.z);
-            float randomY = bounds.max.y;
+            //float randomX = Random.Range(bounds.min.x, bounds.max.x);
+            //float randomZ = Random.Range(bounds.min.z, bounds.max.z);
+            //float randomY = bounds.max.y;
 
-            Vector3 spawnPosition = new Vector3(randomX, randomY, randomZ);
+            //Vector3 spawnPosition = new Vector3(randomX, randomY, randomZ);
 
-            GameObject obj = Instantiate(objSpawn[i]);
-            obj.transform.position = spawnPosition;
+            int rdm;
+
+            do
+            {
+                rdm = Random.Range(0, objPoints.Length);
+            }
+            while (used[rdm] == true);
+
+            used[rdm] = true;
+
+            GameObject prefab;
+            if (Random.value < 0.5f)
+            {
+                int whichPrefab = Random.Range(0, obstacles.Length);
+                 prefab = obstacles[whichPrefab];
+            }
+            else
+            {
+                int whichPrefab = Random.Range(0, hides.Length);
+                 prefab = hides[whichPrefab];
+            }
+
+
+            GameObject obj = Instantiate(prefab);// (objSpawn[i]);
+            obj.transform.position = objPoints[rdm].position;
+            //obj.transform.rotation = objPoints[rdm].rotation;
+
             obj.transform.parent = terrain.transform;
         } 
     }

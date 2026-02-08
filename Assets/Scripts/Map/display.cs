@@ -31,6 +31,8 @@ public class display : MonoBehaviour
     
     public GameObject grimoire;
 
+
+    public GameObject balises;//DANS LA HIERARCHIE
     void Awake()
     {    
         //ponts.SetActive(false);
@@ -111,7 +113,7 @@ public class display : MonoBehaviour
             float randomY = boundsBalises.max.y;
 
             spawnpoints[i].position = new Vector3(randomX, randomY, randomZ);
-            spawnpoints[i].transform.parent = terrainPatrouille.transform;
+            spawnpoints[i].transform.parent = balises.transform;
         }
     }
 

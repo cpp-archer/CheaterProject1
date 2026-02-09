@@ -12,13 +12,13 @@ public class display : MonoBehaviour
     private Bounds boundsBalises;
 
     //public GameObject[] objSpawn;
-    public Transform[] objPoints;
+    public Transform[] objPointsSpawn;
 
 
     public GameObject[] hides;
     public GameObject[] obstacles;
 
-    public Transform[] spawnpoints;
+    public Transform[] BalisesSpawnpoints;
 
   
     private NavMeshSurface navMeshSurface;
@@ -61,7 +61,7 @@ public class display : MonoBehaviour
 
         int nbObj = Random.Range(6, 8);
 
-        bool[] used = new bool[objPoints.Length];
+        bool[] used = new bool[objPointsSpawn.Length];
         //int spawned = 0;
 
         for (int i = 0; i < nbObj; i++) //for (int i = 0; i < objSpawn.Length; i++)
@@ -76,7 +76,7 @@ public class display : MonoBehaviour
 
             do
             {
-                rdm = Random.Range(0, objPoints.Length);
+                rdm = Random.Range(0, objPointsSpawn.Length);
             }
             while (used[rdm] == true);
 
@@ -96,7 +96,7 @@ public class display : MonoBehaviour
 
 
             GameObject obj = Instantiate(prefab);// (objSpawn[i]);
-            obj.transform.position = objPoints[rdm].position;
+            obj.transform.position = objPointsSpawn[rdm].position;
             //obj.transform.rotation = objPoints[rdm].rotation;
 
             obj.transform.parent = terrain.transform;
@@ -106,14 +106,14 @@ public class display : MonoBehaviour
     //on genere sur la map les balises de patrouille de li'a
     private void GenBalises() { 
 
-        for(int i=0; i < spawnpoints.Length; i++)
+        for(int i=0; i < BalisesSpawnpoints.Length; i++)
         {
             float randomX = Random.Range(boundsBalises.min.x, boundsBalises.max.x);
             float randomZ = Random.Range(boundsBalises.min.z, boundsBalises.max.z);
             float randomY = boundsBalises.max.y;
 
-            spawnpoints[i].position = new Vector3(randomX, randomY, randomZ);
-            spawnpoints[i].transform.parent = balises.transform;
+            BalisesSpawnpoints[i].position = new Vector3(randomX, randomY, randomZ);
+            BalisesSpawnpoints[i].transform.parent = balises.transform;
         }
     }
 

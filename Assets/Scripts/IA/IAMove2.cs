@@ -22,7 +22,7 @@ public class IAMove2 : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         GotoNextPoint();
 
-       target = GameObject.FindGameObjectWithTag("player").transform;
+        target = GameObject.FindGameObjectWithTag("player").transform;
         agent.enabled = true;
         panelLoose.SetActive(false);
     }
@@ -43,10 +43,8 @@ public class IAMove2 : MonoBehaviour
     {
         if (!playerDetected)
         {
-
             if (!agent.pathPending && agent.remainingDistance < 0.5f)
                 GotoNextPoint();
-
         }
         Detection();
         DrawViewCone();
@@ -58,15 +56,15 @@ public class IAMove2 : MonoBehaviour
         float playerDistance= Vector3.Distance(target.position, transform.position);
 
         //angle
-        Vector3 targetDir = target.position - transform.position;
+        Vector3 targetDir = target.position + Vector3.up * 2 - transform.position;
         //float angle = Vector3.Angle(targetDir, transform.forward);
-        Debug.DrawRay(transform.position, targetDir, Color.red);
+        Debug.DrawRay(transform.position, targetDir, Color.red, Time.deltaTime);
         
         //raycast
         RaycastHit hit;
         if (Physics.Raycast(transform.position, targetDir, out hit, viewDistance))
         {
-            if (hit.transform == target) //l'ia nous suit
+            if (hit.collider.gameObject.tag == "player") //l'ia nous suit
             {
                 Debug.Log("I see you");
                 playerDetected = true;
@@ -93,11 +91,10 @@ public class IAMove2 : MonoBehaviour
     }
     void looser()
     {
-        if(playerDetected == true)
-        {
+        //if(playerDetected == true)
+        //{
             agent.SetDestination(target.position);
             panelLoose.SetActive(true);
-
-        }
+        //}
     }
 }

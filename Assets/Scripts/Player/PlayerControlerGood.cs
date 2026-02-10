@@ -64,12 +64,9 @@ public class PlayerControlerGood : MonoBehaviour
         animator = controller.GetComponent<Animator>();
 
         animator.SetTrigger("StandUp");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(6f);
         canMove = true;
-
-       
     }
-
 
     void Update()
     {
@@ -120,8 +117,7 @@ public class PlayerControlerGood : MonoBehaviour
         if (direction == Vector3.left)
         {
             animator.SetBool("IsLefting", true);
-        }
-       
+        } 
     }
 
     //rotate la souris

@@ -20731,7 +20731,8 @@ MonoBehaviour:
   - {fileID: 3084226895834852923, guid: 7b2bc642f62d5904085d4e28cd596d4e, type: 3}
   - {fileID: 3462343742887019640, guid: 3047c64589d5b754db1626f0525d8eae, type: 3}
   - {fileID: 1000012805669232, guid: 5bbfd8b48a981bf4e9accfcd61ad45d5, type: 3}
-  - {fileID: 1000012805669232, guid: 5bbfd8b48a981bf4e9accfcd61ad45d5, type: 3}
+  - {fileID: 4524721174441070334, guid: 427c352fbf8081245a27d2f2706ed153, type: 3}
+  - {fileID: 6108449227501448965, guid: d4acf8193e30f1747b0ef7d87a0c20d8, type: 3}
   obstacles:
   - {fileID: 1000013279515720, guid: 8b061171ffbf55542ac1ee5b075960b9, type: 3}
   - {fileID: 1000010131917480, guid: ab387564fd88b3f4c9255d40f150cad7, type: 3}
@@ -20742,6 +20743,8 @@ MonoBehaviour:
   - {fileID: 5575030985936643637, guid: 40d254c4152388949aaaee13b182bf55, type: 3}
   - {fileID: 1916132114430185883, guid: 927241971101d44449044fa86219604c, type: 3}
   - {fileID: 1000014272577658, guid: 8b3ef7fa222026344b78993293df94a2, type: 3}
+  - {fileID: 4524721174441070334, guid: a7045bd0419a9bb479a2116259c314df, type: 3}
+  - {fileID: 6108449227501448965, guid: c2537597e263e0d48b7f3562e6b42fa2, type: 3}
   BalisesSpawnpoints:
   - {fileID: 694964734}
   - {fileID: 2100882738}

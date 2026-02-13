@@ -48,25 +48,25 @@ public class PlayerControlerGood : MonoBehaviour
         crouchRef.action.Disable();
     }
 
-    //void Start()
-    //{
-    //    //recuperation 
-    //    controller = GetComponent<CharacterController>();
-    //    animator = controller.GetComponent<Animator>();
-    //    //controller.height = 2f;
-
-    //    canMove = false;
-    //    animator.SetTrigger("StandUp");
-    //}
-    IEnumerator Start()
+    void Start()
     {
+        //recuperation 
         controller = GetComponent<CharacterController>();
         animator = controller.GetComponent<Animator>();
+        //controller.height = 2f;
 
-        animator.SetTrigger("StandUp");
-        yield return new WaitForSeconds(6f);
-        canMove = true;
+        //canMove = false;
+        //animator.SetTrigger("StandUp");
     }
+    //IEnumerator Start()
+    //{
+    //    controller = GetComponent<CharacterController>();
+    //    animator = controller.GetComponent<Animator>();
+
+    //    animator.SetTrigger("StandUp");
+    //    yield return new WaitForSeconds(6f);
+    //    canMove = true;
+    //}
 
     void Update()
     {
@@ -80,8 +80,8 @@ public class PlayerControlerGood : MonoBehaviour
         velocity.y = vertical;
          vertical+= gravite * Time.deltaTime;
         
-        if (!canMove)
-            return;
+        //if (!canMove)
+        //    return;
 
         //pas de mouvement si crouched
         if (!crouched)

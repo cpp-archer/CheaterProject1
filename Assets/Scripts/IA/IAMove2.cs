@@ -94,7 +94,7 @@ public class IAMove2 : MonoBehaviour
         //if(playerDetected == true)
         //{
             agent.SetDestination(target.position);
-            panelLoose.SetActive(true);
+            //panelLoose.SetActive(true);
         //}
     }
 }

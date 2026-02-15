@@ -27,7 +27,7 @@ public class displayAgaib : MonoBehaviour
     //navmesh
     private NavMeshSurface navMeshSurface;
     private NavMeshSurface navMesh2;
-    private NavMeshSurface terrainPatrouilleMesh;
+    //private NavMeshSurface terrainPatrouilleMesh;
 
     //prefab du pont vers grimoire
     public GameObject ponts;
@@ -48,7 +48,7 @@ public class displayAgaib : MonoBehaviour
     void Awake()
     {
         navMeshSurface = terrain.GetComponent<NavMeshSurface>();
-        terrainPatrouilleMesh = terrainPatrouille.GetComponent<NavMeshSurface>();
+        //terrainPatrouilleMesh = terrainPatrouille.GetComponent<NavMeshSurface>();
 
         bounds = terrain.GetComponent<Renderer>().bounds;
         boundsBalises = terrainPatrouille.GetComponent<Renderer>().bounds;
@@ -60,7 +60,7 @@ public class displayAgaib : MonoBehaviour
 
         //navmesh bake à l'awake
         navMeshSurface.BuildNavMesh();
-        terrainPatrouilleMesh.BuildNavMesh();
+        //terrainPatrouilleMesh.BuildNavMesh();
 
     }
 
@@ -125,7 +125,7 @@ public class displayAgaib : MonoBehaviour
     private void GenBalises()
     {
 
-        for (int i = 0; i < BalisesSpawnpoints.Length; i++)
+        for (int i = 0; i < BalisesSpawnpoints.Length-1; i++)
         {
             float randomX = Random.Range(boundsBalises.min.x, boundsBalises.max.x);
             float randomZ = Random.Range(boundsBalises.min.z, boundsBalises.max.z);
@@ -150,6 +150,8 @@ public class displayAgaib : MonoBehaviour
 
         grimoire.transform.position = grimPos;
         grimoire.transform.rotation = pontPref.transform.rotation;
+        navMeshSurface.BuildNavMesh();
+
     }
 }
 

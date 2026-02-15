@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.UIElements;
+using System.Collections;
 
 public class PlayerControlerGood : MonoBehaviour
 {
@@ -21,8 +22,16 @@ public class PlayerControlerGood : MonoBehaviour
     private bool rotated = false;
     private bool crouched = false;
 
+
+    [SerializeField] float gravite = -20f;
+    [SerializeField] float groundForce = -2f;
+    private float vertical;
+
     //animations
     private Animator animator;
+    private bool canMove = false;
+
+
 
     private void OnEnable()
     {
@@ -45,7 +54,19 @@ public class PlayerControlerGood : MonoBehaviour
         controller = GetComponent<CharacterController>();
         animator = controller.GetComponent<Animator>();
         //controller.height = 2f;
+
+        //canMove = false;
+        //animator.SetTrigger("StandUp");
     }
+    //IEnumerator Start()
+    //{
+    //    controller = GetComponent<CharacterController>();
+    //    animator = controller.GetComponent<Animator>();
+
+    //    animator.SetTrigger("StandUp");
+    //    yield return new WaitForSeconds(6f);
+    //    canMove = true;
+    //}
 
     void Update()
     {
@@ -55,12 +76,17 @@ public class PlayerControlerGood : MonoBehaviour
         //selon la rotate du perso
         Vector3 moveDirection = transform.TransformDirection(direction);
 
-        //crouched = crouchRef.action.ReadValue<float>() > 0;
-        //animator.SetBool("IsCrouched", crouched);
+        Vector3 velocity = moveDirection * moveSpeed;
+        velocity.y = vertical;
+         vertical+= gravite * Time.deltaTime;
+        
+        //if (!canMove)
+        //    return;
 
         //pas de mouvement si crouched
         if (!crouched)
-            controller.Move(moveDirection * Time.deltaTime * moveSpeed);
+            controller.Move(velocity * Time.deltaTime);
+            //controller.Move(moveDirection * Time.deltaTime * moveSpeed);
 
         //idle
         animator.SetBool("IsWalking", false);
@@ -91,15 +117,7 @@ public class PlayerControlerGood : MonoBehaviour
         if (direction == Vector3.left)
         {
             animator.SetBool("IsLefting", true);
-        }
-        
-        //if (crouchRef.action.ReadValue<float>() > 0)
-        //{
-        //    animator.SetBool("IsCrouched", true);
-        //    //crouched = !crouched;
-        //}
-
-        //animator.SetBool("IsCrouched", crouchRef.action.ReadValue<float>() > 0);
+        } 
     }
 
     //rotate la souris
@@ -107,7 +125,6 @@ public class PlayerControlerGood : MonoBehaviour
     {      
         rotated = true;
         float mouseRotation = rotationRef.action.ReadValue<float>();
-
         transform.Rotate(Vector3.up * Time.deltaTime * rotateSpeed * mouseRotation);
     }
 
@@ -124,8 +141,6 @@ public class PlayerControlerGood : MonoBehaviour
         Debug.Log("pluscrouch");
         crouched = false;
     }
-
-
   
 }
 

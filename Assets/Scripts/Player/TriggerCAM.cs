@@ -23,7 +23,7 @@ public class CamTriggerSwitch : MonoBehaviour
         //    cam2.SetActive(!cam2.activeSelf);
         //    Debug.Log("switch");
 
-            SwitchCam(cam2);
+            SwitchCam(cam1);
         }
 
         if(other.tag== "wall3")

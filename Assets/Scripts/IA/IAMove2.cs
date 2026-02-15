@@ -16,11 +16,15 @@ public class IAMove2 : MonoBehaviour
 
     private bool playerDetected;
 
+    public GameObject panelLoose;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         GotoNextPoint();
+
+        target = GameObject.FindGameObjectWithTag("player").transform;
         agent.enabled = true;
+        panelLoose.SetActive(false);
     }
 
     void GotoNextPoint()
@@ -37,9 +41,11 @@ public class IAMove2 : MonoBehaviour
 
     void Update()
     {
-        if (!agent.pathPending && agent.remainingDistance < 0.5f)
-            GotoNextPoint();
-
+        if (!playerDetected)
+        {
+            if (!agent.pathPending && agent.remainingDistance < 0.5f)
+                GotoNextPoint();
+        }
         Detection();
         DrawViewCone();
     }
@@ -50,18 +56,15 @@ public class IAMove2 : MonoBehaviour
         float playerDistance= Vector3.Distance(target.position, transform.position);
 
         //angle
-        Vector3 targetDir = target.position - transform.position;
-        float angle = Vector3.Angle(targetDir, transform.forward);
-        Debug.DrawRay(transform.position, targetDir, Color.red);
-        //if (angle < viewAngle)
-        //    Debug.Log("Close");
-
-       
+        Vector3 targetDir = target.position + Vector3.up * 2 - transform.position;
+        //float angle = Vector3.Angle(targetDir, transform.forward);
+        Debug.DrawRay(transform.position, targetDir, Color.red, Time.deltaTime);
+        
         //raycast
         RaycastHit hit;
         if (Physics.Raycast(transform.position, targetDir, out hit, viewDistance))
         {
-            if (hit.transform == target) //l'ia nous suit
+            if (hit.collider.gameObject.tag == "player") //l'ia nous suit
             {
                 Debug.Log("I see you");
                 playerDetected = true;
@@ -72,10 +75,6 @@ public class IAMove2 : MonoBehaviour
                 Debug.Log("I don't see you");
             }
         }
-        //else
-        //{
-        //   Debug.Log("I don't see you");
-        //}
     }
     void DrawViewCone()
     {
@@ -92,10 +91,10 @@ public class IAMove2 : MonoBehaviour
     }
     void looser()
     {
-        if(playerDetected == true)
-        {
+        //if(playerDetected == true)
+        //{
             agent.SetDestination(target.position);
-
-        }
+            //panelLoose.SetActive(true);
+        //}
     }
 }

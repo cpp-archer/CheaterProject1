@@ -91,10 +91,10 @@ public class IAMove2 : MonoBehaviour
     }
     void looser()
     {
-        //if(playerDetected == true)
-        //{
+        if (playerDetected == true)
+        {
             agent.SetDestination(target.position);
             //panelLoose.SetActive(true);
-        //}
+        }
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class displayAgaib : MonoBehaviour
 {
 
+    float minDistance = 2.5f;
+
     public GameObject terrain;
     public GameObject terrainPatrouille;
 
@@ -58,7 +60,6 @@ public class displayAgaib : MonoBehaviour
 
         //navmesh bake à l'awake
         navMeshSurface.BuildNavMesh();
-        //navMesh2.BuildNavMesh();
         terrainPatrouilleMesh.BuildNavMesh();
 
     }
@@ -84,76 +85,44 @@ public class displayAgaib : MonoBehaviour
         GenBandes(bande2, allPattern[rdm2]);
         GenBandes(bande3, allPattern[rdm3]);
 
-        //int nbObj = Random.Range(6, 8);
-
-        //bool[] used = new bool[objPointsSpawn.Length];
-        ////int spawned = 0;
-
-        //for (int i = 0; i < nbObj; i++) //for (int i = 0; i < objSpawn.Length; i++)
-        //{
-        //    int rdm;
-
-        //    do
-        //    {
-        //        rdm = Random.Range(0, objPointsSpawn.Length);
-        //    }
-        //    while (used[rdm] == true);
-
-        //    used[rdm] = true;
-
-        //    GameObject prefab;
-        //    if (Random.value < 0.5f)
-        //    {
-        //        int whichPrefab = Random.Range(0, obstacles.Length);
-        //        prefab = obstacles[whichPrefab];
-        //    }
-        //    else
-        //    {
-        //        int whichPrefab = Random.Range(0, hides.Length);
-        //        prefab = hides[whichPrefab];
-        //    }
-
-
-        //    GameObject obj = Instantiate(prefab);// (objSpawn[i]);
-        //    obj.transform.position = objPointsSpawn[rdm].position;
-        //    //obj.transform.rotation = objPoints[rdm].rotation;
-
-        //    obj.transform.parent = terrain.transform;
-        //}
+  
     }
 
 
     private void GenBandes(Transform[] bande, int[] pattern)
     {
-
+        //bool lastObject = false;
         for (int i = 0; i < bande.Length; i++)
         {
             GameObject prefab = null;
 
+    
+            //if(!lastObject){ 
+                
+                if (pattern[i] == 1){
+                    int rdm = Random.Range(0, obstacles.Length);
+                    prefab = obstacles[rdm];
+                }
 
-            if (pattern[i] == 1)
-            {
-                int rdm = Random.Range(0, obstacles.Length);
-                prefab = obstacles[rdm];
-
-            }
-
-            if (pattern[i] == 2)
-            {
-                int rdm = Random.Range(0, hides.Length);
-                prefab = hides[rdm];
-
-            }
+                if (pattern[i] == 2){
+                    int rdm = Random.Range(0, hides.Length);
+                    prefab = hides[rdm];
+                }
+           // }
 
             if (prefab != null) { 
                 GameObject obj = Instantiate(prefab);// (objSpawn[i]);
-            obj.transform.position = bande[i].position;
-            obj.transform.parent = terrain.transform;
-        }
+                obj.transform.position = bande[i].position;
+                obj.transform.parent = terrain.transform;
+                //lastObject = true;
+
+             }
+            //else
+            //    lastObject = false;
         }
     }
         //on genere sur la map les balises de patrouille de li'a
-        private void GenBalises()
+    private void GenBalises()
     {
 
         for (int i = 0; i < BalisesSpawnpoints.Length; i++)

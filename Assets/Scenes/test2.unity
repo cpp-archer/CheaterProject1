@@ -21318,7 +21318,7 @@ MonoBehaviour:
   - {fileID: 3439074853117415544, guid: 7b7a72f422b1db244bcc4aaf86fc9a6e, type: 3}
   - {fileID: 1986197888562571270, guid: 27bc85fec23ee0c4ba920cfe40efbc88, type: 3}
   - {fileID: 705186429600631343, guid: 3cec8a0a7cafeac4bb79f6e6b96f5f74, type: 3}
-  - {fileID: 7833954676218806135, guid: 7f922044873f3a943b42a1d32278ab69, type: 3}
+  - {fileID: 4440887684341493127, guid: 4eae41514d7f4594eab3088d54173b19, type: 3}
   obstacles:
   - {fileID: 1000013279515720, guid: 8b061171ffbf55542ac1ee5b075960b9, type: 3}
   - {fileID: 1000010131917480, guid: ab387564fd88b3f4c9255d40f150cad7, type: 3}

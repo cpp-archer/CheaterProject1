@@ -6,8 +6,6 @@ using UnityEngine.UIElements;
 
 public class IAMove : MonoBehaviour
 {
-
-
     private int destPoint = 0;
     private NavMeshAgent agent;
 
@@ -57,7 +55,6 @@ public class IAMove : MonoBehaviour
         }
        Detection();
         DrawViewCone();
-
     }
 
 
@@ -122,7 +119,6 @@ public class IAMove : MonoBehaviour
         //destPoint = (destPoint + 1) % points.Length;
         //destPoint = Random.Range(0, points.Length);
     }
-
 
 
     private void Detection()

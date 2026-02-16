@@ -5691,7 +5691,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -11046,7 +11046,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -12225,7 +12225,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -12536,7 +12536,7 @@ Transform:
   m_GameObject: {fileID: 587600297}
   serializedVersion: 2
   m_LocalRotation: {x: -0.14250246, y: -0, z: -0, w: 0.9897945}
-  m_LocalPosition: {x: 3.16, y: -8.332661, z: -12.487171}
+  m_LocalPosition: {x: 6.3, y: -8.332661, z: -12.487171}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12950,7 +12950,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -15019,7 +15019,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -15333,7 +15333,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -16092,7 +16092,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -16366,7 +16366,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -18855,7 +18855,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -20144,7 +20144,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -21054,7 +21054,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -21335,7 +21335,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -22671,10 +22671,9 @@ MonoBehaviour:
   - {fileID: 2813965989650700398, guid: 72ebf0292f974684b87eed139837677e, type: 3}
   - {fileID: 2482630764972243544, guid: c472b14ee23b7d540977b2c5cde47ed7, type: 3}
   - {fileID: 8649615742500535266, guid: feaa014c51d566045a62634d0e742aa8, type: 3}
+  - {fileID: 1986197888562571270, guid: 27bc85fec23ee0c4ba920cfe40efbc88, type: 3}
   - {fileID: 3462343742887019640, guid: 3047c64589d5b754db1626f0525d8eae, type: 3}
   - {fileID: 1000012805669232, guid: 5bbfd8b48a981bf4e9accfcd61ad45d5, type: 3}
-  - {fileID: 3439074853117415544, guid: 7b7a72f422b1db244bcc4aaf86fc9a6e, type: 3}
-  - {fileID: 1986197888562571270, guid: 27bc85fec23ee0c4ba920cfe40efbc88, type: 3}
   - {fileID: 705186429600631343, guid: 3cec8a0a7cafeac4bb79f6e6b96f5f74, type: 3}
   - {fileID: 4440887684341493127, guid: 4eae41514d7f4594eab3088d54173b19, type: 3}
   obstacles:
@@ -22685,10 +22684,8 @@ MonoBehaviour:
   - {fileID: 1000013850243760, guid: 9a9086d55bfedd14e8abe11fc5536dd4, type: 3}
   - {fileID: 3084226895834852923, guid: 40b813a8fa2de3b41baced5071b0573b, type: 3}
   - {fileID: 5575030985936643637, guid: 40d254c4152388949aaaee13b182bf55, type: 3}
-  - {fileID: 1916132114430185883, guid: 927241971101d44449044fa86219604c, type: 3}
-  - {fileID: 1000014272577658, guid: 8b3ef7fa222026344b78993293df94a2, type: 3}
   - {fileID: 4524721174441070334, guid: a7045bd0419a9bb479a2116259c314df, type: 3}
-  - {fileID: 6108449227501448965, guid: c2537597e263e0d48b7f3562e6b42fa2, type: 3}
+  - {fileID: 1000014272577658, guid: 8b3ef7fa222026344b78993293df94a2, type: 3}
   - {fileID: 1000014272577658, guid: 8b3ef7fa222026344b78993293df94a2, type: 3}
   - {fileID: 1781946515753735170, guid: 92371841246d25f4daa16e99b280c449, type: 3}
   ponts: {fileID: 7062744272099715748, guid: 038bd3df02578d74e861a107bd12c356, type: 3}
@@ -23059,7 +23056,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}

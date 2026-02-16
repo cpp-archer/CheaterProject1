@@ -53,7 +53,7 @@ public class IAMove : MonoBehaviour
             if (!agent.pathPending && agent.remainingDistance < 0.5f)
                 GotoNextPoint();
         }
-       Detection();
+     //  Detection();
         DrawViewCone();
     }
 
@@ -74,7 +74,7 @@ public class IAMove : MonoBehaviour
         }
 
         //on choisi 3 4 ou 5 points a visiter
-        pointToGo = Random.Range(3, 6);
+        pointToGo = Random.Range(2, 4);
 
         points = new Transform[pointToGo + 1]; //+1 pour le grimoire
 
@@ -121,40 +121,40 @@ public class IAMove : MonoBehaviour
     }
 
 
-    private void Detection()
-    {
-        //distance
-        float playerDistance = Vector3.Distance(target.position, transform.position);
+    //private void Detection()
+    //{
+    //    //distance
+    //    float playerDistance = Vector3.Distance(target.position, transform.position);
 
-        //si le joueur est pas assez proche on fait nada
-        if (playerDistance > viewDistance)
-            return;
+    //    //si le joueur est pas assez proche on fait nada
+    //    if (playerDistance > viewDistance)
+    //        return;
 
 
-        //angle
-        Vector3 targetDir = target.position + Vector3.up * 2 - transform.position;
-        Debug.DrawRay(transform.position, targetDir, Color.red, Time.deltaTime);
+    //    //angle
+    //    Vector3 targetDir = target.position + Vector3.up * 2 - transform.position;
+    //    Debug.DrawRay(transform.position, targetDir, Color.red, Time.deltaTime);
 
-        float angle = Vector3.Angle(targetDir, transform.forward);
-        if (angle > viewAngle)
-            return;
+    //    float angle = Vector3.Angle(targetDir, transform.forward);
+    //    if (angle > viewAngle)
+    //        return;
 
-        //raycast
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, targetDir, out hit, viewDistance))
-        {
-            if (hit.collider.gameObject.tag == "player") //l'ia nous suit
-            {
-                Debug.Log("I see you");
-                playerDetected = true;
-                looser();
-            }
-            else
-            {
-                Debug.Log("I don't see you");
-            }
-        }
-    }
+    //    //raycast
+    //    RaycastHit hit;
+    //    if (Physics.Raycast(transform.position, targetDir, out hit, viewDistance))
+    //    {
+    //        if (hit.collider.gameObject.tag == "player") //l'ia nous suit
+    //        {
+    //            Debug.Log("I see you");
+    //            playerDetected = true;
+    //            looser();
+    //        }
+    //        else
+    //        {
+    //            Debug.Log("I don't see you");
+    //        }
+    //    }
+    //}
     void DrawViewCone()
     {
         int rayCount = 15;

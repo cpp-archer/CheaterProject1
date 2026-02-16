@@ -5,7 +5,7 @@ using UnityEngine;
 public class displayAgain : MonoBehaviour
 {
 
-    float minDistance = 2.5f;
+    //float minDistance = 2.5f;
 
     public GameObject terrain;
     public GameObject terrainPatrouille;
@@ -61,9 +61,7 @@ public class displayAgain : MonoBehaviour
         //navmesh bake à l'awake
         navMeshSurface.BuildNavMesh();
         //terrainPatrouilleMesh.BuildNavMesh();
-
     }
-
 
     //on genere sur la map les objets pour se cacher à des endoits random
     private void GenObjets()
@@ -84,8 +82,6 @@ public class displayAgain : MonoBehaviour
         GenBandes(bande1, allPattern[rdm1]);
         GenBandes(bande2, allPattern[rdm2]);
         GenBandes(bande3, allPattern[rdm3]);
-
-  
     }
 
 
@@ -95,7 +91,6 @@ public class displayAgain : MonoBehaviour
         for (int i = 0; i < bande.Length; i++)
         {
             GameObject prefab = null;
-
     
             //if(!lastObject){ 
                 
@@ -151,7 +146,6 @@ public class displayAgain : MonoBehaviour
         grimoire.transform.position = grimPos;
         grimoire.transform.rotation = pontPref.transform.rotation;
         navMeshSurface.BuildNavMesh();
-
     }
 }
 

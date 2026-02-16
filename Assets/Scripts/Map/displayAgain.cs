@@ -2,7 +2,7 @@ using Unity.AI.Navigation;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class displayAgaib : MonoBehaviour
+public class displayAgain : MonoBehaviour
 {
 
     float minDistance = 2.5f;
@@ -21,8 +21,8 @@ public class displayAgaib : MonoBehaviour
     public GameObject[] obstacles;
 
     //pour l'ia et sa patrouille
-    public Transform[] BalisesSpawnpoints;
-    public GameObject balises;//DANS LA HIERARCHIE
+    //public Transform[] BalisesSpawnpoints;
+    //public GameObject balises;//DANS LA HIERARCHIE
 
     //navmesh
     private NavMeshSurface navMeshSurface;
@@ -55,7 +55,7 @@ public class displayAgaib : MonoBehaviour
 
         //generations des elements sur la map
         GenObjets();
-        GenBalises();
+        //GenBalises();
         pagePont();
 
         //navmesh bake à l'awake
@@ -122,19 +122,19 @@ public class displayAgaib : MonoBehaviour
         }
     }
         //on genere sur la map les balises de patrouille de li'a
-    private void GenBalises()
-    {
+    //private void GenBalises()
+    //{
 
-        for (int i = 0; i < BalisesSpawnpoints.Length-1; i++)
-        {
-            float randomX = Random.Range(boundsBalises.min.x, boundsBalises.max.x);
-            float randomZ = Random.Range(boundsBalises.min.z, boundsBalises.max.z);
-            float randomY = boundsBalises.max.y;
+    //    for (int i = 0; i < BalisesSpawnpoints.Length-1; i++)
+    //    {
+    //        float randomX = Random.Range(boundsBalises.min.x, boundsBalises.max.x);
+    //        float randomZ = Random.Range(boundsBalises.min.z, boundsBalises.max.z);
+    //        float randomY = boundsBalises.max.y;
 
-            BalisesSpawnpoints[i].position = new Vector3(randomX, randomY, randomZ);
-            BalisesSpawnpoints[i].transform.parent = balises.transform;
-        }
-    }
+    //        BalisesSpawnpoints[i].position = new Vector3(randomX, randomY, randomZ);
+    //        BalisesSpawnpoints[i].transform.parent = balises.transform;
+    //    }
+    //}
 
     //on genere le pont a une des 3 pos possible et on deplace le grimoire devant le pont
     private void pagePont()

@@ -32,6 +32,8 @@ public class IAMove : MonoBehaviour
 
     public Transform grimPoint;
 
+
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -40,9 +42,11 @@ public class IAMove : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("player").transform;
         agent.enabled = true;
 
-        ChangeBande();
+        //ChangeBande();
 
         panelLoose.SetActive(false);
+
+        Shuffle(2);
     }
     void Update()
     {
@@ -55,68 +59,102 @@ public class IAMove : MonoBehaviour
         DrawViewCone();
     }
 
-    private void ChangeBande()
+    //private void ChangeBande()
+    //{
+    //    if (bandeIndex == 0)
+    //    {
+    //        currentBande = bande1;
+    //    }
+    //    else if (bandeIndex == 1)
+    //    {
+    //        currentBande = bande2;
+    //    }
+    //    else
+    //    {
+    //        currentBande = bande3;
+    //    }
+
+    //    //on choisi 1 ou 2 points a visiter
+    //    // pointToGo = Random.Range(2, 3);
+    //    pointToGo = 2;
+
+    //    points = new Transform[pointToGo + 1]; //+1 pour le grimoire
+
+    //    //on parcours les points a visiter
+    //    for (int i = 0; i < pointToGo; i++)
+    //    {
+    //        //on choisit un point random dans la bande
+    //        int rdm = Random.Range(0, currentBande.Length);
+    //        points[i] = currentBande[rdm];
+
+    //        Debug.Log("point" + points[i].name + "bande" + bandeIndex);
+    //    }
+
+    //    points[pointToGo] = grimPoint;
+    //    Debug.Log("gogrimoire");
+
+    //    //pour revenir a bande1
+    //    bandeIndex++;
+    //    if (bandeIndex > 2)
+    //    {
+    //        bandeIndex = 0;
+    //    }
+    //    Debug.Log(bandeIndex);
+    //    destPoint = 0;
+    //    GotoNextPoint();
+    //}
+
+    private void Shuffle(int numberByBande)
     {
-        if (bandeIndex == 0)
-        {
-            currentBande = bande1;
-        }
-        else if (bandeIndex == 1)
-        {
-            currentBande = bande2;
-        }
-        else
-        {
-            currentBande = bande3;
-        }
+        points = new Transform[numberByBande * 3 + 1];
 
-        //on choisi 1 ou 2 points a visiter
-        // pointToGo = Random.Range(2, 3);
-        pointToGo = 2;
-
-        points = new Transform[pointToGo + 1]; //+1 pour le grimoire
-
-        //on parcours les points a visiter
-        for (int i = 0; i < pointToGo; i++)
+        for (int i = 0; i < numberByBande; i ++)
         {
-            //on choisit un point random dans la bande
-            int rdm = Random.Range(0, currentBande.Length);
-            points[i] = currentBande[rdm];
+            //points[i] = bande1[Random.Range(0, bande1.Length)];
+            //points[i + 1] = bande2[Random.Range(0, bande2.Length)];
+            //points[i + 2] = bande3[Random.Range(0, bande3.Length)];
 
-            Debug.Log("point" + points[i].name + "bande" + bandeIndex);
+            points[0 + i * 3] = bande1[Random.Range(0, bande1.Length)];
+            points[1 + i * 3] = bande2[Random.Range(0, bande2.Length)];
+            points[2 + i * 3] = bande3[Random.Range(0, bande3.Length)];
         }
 
-        points[pointToGo] = grimPoint;
-        Debug.Log("gogrimoire");
+        points[numberByBande * 3] = grimPoint;
 
-        //pour revenir a bande1
-        bandeIndex++;
-        if (bandeIndex > 2)
+        for (int i = 0; i < points.Length; i++)
         {
-            bandeIndex = 0;
+            int rdm = Random.Range(0, points.Length);
+            Transform copie = points[i];
+            points[i] = points[rdm];
+            points[rdm] = copie;
+            Debug.Log(points[i]);
         }
-        Debug.Log(bandeIndex);
-        destPoint = 0;
-        GotoNextPoint();
+
+        
     }
    private void GotoNextPoint()
     {
-        if (points.Length == 0)
-            return;
+        if (destPoint >= points.Length)
+            destPoint = 0;
 
-        //agent.destination = points[destPoint].position;
         agent.SetDestination(points[destPoint].position);
 
-      
+        destPoint++;
+
+
+        //agent.destination = points[destPoint].position;
+        //agent.SetDestination(points[destPoint].position);
+
+
 
         //si on a fait tout les points de la bande (donc le rdm entre 3 et 6)
         //if(destPoint >= points.Length)
-        if(destPoint==points.Length-1)
-        {
-            ChangeBande();
-            return; //pattern fini on se taille de la bande
-        }
-        destPoint++; //pour keep track du rdm
+        //if(destPoint==points.Length-1)
+        //{
+        //ChangeBande();
+        //return; //pattern fini on se taille de la bande
+        //}
+        //destPoint++; //pour keep track du rdm
         //destPoint = (destPoint + 1) % points.Length;
         //destPoint = Random.Range(0, points.Length);
     }

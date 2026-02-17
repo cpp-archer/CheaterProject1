@@ -26,13 +26,11 @@ public class IAMove : MonoBehaviour
     //patrouille
     private Transform[] currentBande;
     private Transform[] points;
-    
-    public Transform grimPoint;
-
 
     private int bandeIndex = 0;
     private int pointToGo = 0;
 
+    public Transform grimPoint;
 
     void Start()
     {
@@ -57,7 +55,6 @@ public class IAMove : MonoBehaviour
         DrawViewCone();
     }
 
-
     private void ChangeBande()
     {
         if (bandeIndex == 0)
@@ -73,8 +70,9 @@ public class IAMove : MonoBehaviour
             currentBande = bande3;
         }
 
-        //on choisi 3 4 ou 5 points a visiter
-        pointToGo = Random.Range(2, 4);
+        //on choisi 1 ou 2 points a visiter
+        // pointToGo = Random.Range(2, 3);
+        pointToGo = 2;
 
         points = new Transform[pointToGo + 1]; //+1 pour le grimoire
 
@@ -85,10 +83,11 @@ public class IAMove : MonoBehaviour
             int rdm = Random.Range(0, currentBande.Length);
             points[i] = currentBande[rdm];
 
-            Debug.Log(points[i].name);
+            Debug.Log("point" + points[i].name + "bande" + bandeIndex);
         }
 
         points[pointToGo] = grimPoint;
+        Debug.Log("gogrimoire");
 
         //pour revenir a bande1
         bandeIndex++;
@@ -108,14 +107,16 @@ public class IAMove : MonoBehaviour
         //agent.destination = points[destPoint].position;
         agent.SetDestination(points[destPoint].position);
 
-        destPoint++; //pour keep track du rdm
+      
 
         //si on a fait tout les points de la bande (donc le rdm entre 3 et 6)
-        if(destPoint >= points.Length)
+        //if(destPoint >= points.Length)
+        if(destPoint==points.Length-1)
         {
-            ChangeBande(); 
+            ChangeBande();
+            return; //pattern fini on se taille de la bande
         }
-
+        destPoint++; //pour keep track du rdm
         //destPoint = (destPoint + 1) % points.Length;
         //destPoint = Random.Range(0, points.Length);
     }
@@ -177,4 +178,5 @@ public class IAMove : MonoBehaviour
         //panelLoose.SetActive(true);
         //}
     }
+
 }

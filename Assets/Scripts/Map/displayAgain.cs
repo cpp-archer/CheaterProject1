@@ -26,7 +26,7 @@ public class displayAgain : MonoBehaviour
 
     //navmesh
     private NavMeshSurface navMeshSurface;
-    private NavMeshSurface navMesh2;
+    //private NavMeshSurface navMesh2;
     //private NavMeshSurface terrainPatrouilleMesh;
 
     //prefab du pont vers grimoire
@@ -45,10 +45,16 @@ public class displayAgain : MonoBehaviour
     GameObject[] pattern3;
     GameObject[] pattern4;
 
+
+    public GameObject terrainGrim;
+    private NavMeshSurface terrainGrimMesh;
+
     void Awake()
     {
         navMeshSurface = terrain.GetComponent<NavMeshSurface>();
         //terrainPatrouilleMesh = terrainPatrouille.GetComponent<NavMeshSurface>();
+
+        terrainGrimMesh = terrainGrim.GetComponent<NavMeshSurface>();
 
         bounds = terrain.GetComponent<Renderer>().bounds;
         boundsBalises = terrainPatrouille.GetComponent<Renderer>().bounds;
@@ -60,6 +66,8 @@ public class displayAgain : MonoBehaviour
 
         //navmesh bake à l'awake
         navMeshSurface.BuildNavMesh();
+        terrainGrimMesh.BuildNavMesh();
+
         //terrainPatrouilleMesh.BuildNavMesh();
     }
 
@@ -135,7 +143,7 @@ public class displayAgain : MonoBehaviour
     private void pagePont()
     {
         int rdm = Random.Range(0, pontsPos.Length);
-        print(rdm);
+        //print(rdm);
 
         GameObject pontPref = Instantiate(ponts);
         pontPref.transform.parent = pontsPos[rdm];

@@ -32,6 +32,13 @@ public class PlayerControlerGood : MonoBehaviour
     private bool canMove = false;
 
 
+    private bool haut;
+    private bool down;
+    private bool left;
+    private bool right;
+
+    private Vector3 lastDirection = Vector3.zero;
+
 
     private void OnEnable()
     {
@@ -71,9 +78,34 @@ public class PlayerControlerGood : MonoBehaviour
     void Update()
     {
         Vector2 stickDirection = moveActionRef.action.ReadValue<Vector2>();
-        Vector3 direction = new Vector3(stickDirection.x, 0, stickDirection.y);
+        //Vector3 direction = new Vector3(stickDirection.x, 0, stickDirection.y);
+        
+        //sinon mon pero avance seul donc init à 0 
+        Vector3 direction = Vector3.zero; 
 
-        //selon la rotate du perso
+
+        //eviter les diagonales (1,1) etc 
+        if(stickDirection == Vector2.up) //(0,1)
+        {
+            lastDirection = Vector3.forward; // (0,0,1)
+        }
+        else if (stickDirection == Vector2.down)
+        {
+            lastDirection = Vector3.back;
+        }
+        else if (stickDirection == Vector2.left)
+        {
+            lastDirection = Vector3.left;
+        }
+        else if(stickDirection == Vector2.right)
+        {
+            lastDirection = Vector3.right;
+        }
+        //donc si j'appuie sur 2keys ca correspond a aucune des conditions
+
+        direction = lastDirection;
+
+        //selon la rotate du perso   
         Vector3 moveDirection = transform.TransformDirection(direction);
 
         Vector3 velocity = moveDirection * moveSpeed;

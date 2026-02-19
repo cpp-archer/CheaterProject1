@@ -77,85 +77,8 @@ public class PlayerControlerGood : MonoBehaviour
 
     void Update()
     {
-        Vector2 stickDirection = moveActionRef.action.ReadValue<Vector2>();
-        //Vector3 direction = new Vector3(stickDirection.x, 0, stickDirection.y);
-        
-        //sinon mon pero avance seul donc init à 0 
-        Vector3 direction = Vector3.zero; 
-
-
-        //eviter les diagonales (1,1) etc 
-        if(stickDirection == Vector2.up) //(0,1)
-        {
-            lastDirection = Vector3.forward; // (0,0,1)
-        }
-        else if (stickDirection == Vector2.down)
-        {
-            lastDirection = Vector3.back;
-        }
-        else if (stickDirection == Vector2.left)
-        {
-            lastDirection = Vector3.left;
-        }
-        else if(stickDirection == Vector2.right)
-        {
-            lastDirection = Vector3.right;
-        }
-        //donc si j'appuie sur 2keys ca correspond a aucune des conditions
-
-        direction = lastDirection;
-
-        //pour que le perso s'arrete
-        if(stickDirection == Vector2.zero)
-        {
-            lastDirection = Vector3.zero;
-        }
-
-        //selon la rotate du perso   
-        Vector3 moveDirection = transform.TransformDirection(direction);
-
-        Vector3 velocity = moveDirection * moveSpeed;
-        velocity.y = vertical;
-         vertical+= gravite * Time.deltaTime;
-        
-        //if (!canMove)
-        //    return;
-
-        //pas de mouvement si crouched
-        if (!crouched)
-            controller.Move(velocity * Time.deltaTime);
-          //controller.Move(moveDirection * Time.deltaTime * moveSpeed);
-
-        //idle
-        animator.SetBool("IsWalking", false);
-        animator.SetBool("IsBacking", false);
-        animator.SetBool("IsRighting", false);
-        animator.SetBool("IsLefting", false);
-   
-        if (clickRef.action.ReadValue<float>() > 0 && crouched ==false)
-        {
-           Rotate();
-        }
-
-        if (direction == Vector3.forward)
-        {
-         animator.SetBool("IsWalking", true);
-        }
-
-        if (direction == Vector3.back)
-        {
-            animator.SetBool("IsBacking", true);
-        }
-
-        if (direction == Vector3.right)
-        {
-            animator.SetBool("IsRighting", true);
-        }
-
-        if (direction == Vector3.left)
-        {
-            animator.SetBool("IsLefting", true);
-        } 
+        if (canMove)
+            Move();
     }
 
     //rotate la souris
@@ -178,6 +101,91 @@ public class PlayerControlerGood : MonoBehaviour
         animator.SetBool("IsCrouched", false);//!animator.GetBool("IsCrouched"));
         Debug.Log("pluscrouch");
         crouched = false;
+    }
+
+    private void Move()
+    {
+        //if (!canMove)
+        //{
+        //    lastDirection = Vector3.zero;
+        //}
+
+        Vector2 stickDirection = moveActionRef.action.ReadValue<Vector2>();
+        //Vector3 direction = new Vector3(stickDirection.x, 0, stickDirection.y);
+
+        //sinon mon pero avance seul donc init à 0 
+        Vector3 direction = Vector3.zero;
+
+
+        //eviter les diagonales (1,1) etc 
+        if (stickDirection == Vector2.up) //(0,1)
+        {
+            lastDirection = Vector3.forward; // (0,0,1)
+        }
+        else if (stickDirection == Vector2.down)
+        {
+            lastDirection = Vector3.back;
+        }
+        else if (stickDirection == Vector2.left)
+        {
+            lastDirection = Vector3.left;
+        }
+        else if (stickDirection == Vector2.right)
+        {
+            lastDirection = Vector3.right;
+        }
+        //donc si j'appuie sur 2keys ca correspond a aucune des conditions
+
+        direction = lastDirection;
+
+        //pour que le perso s'arrete
+        if (stickDirection == Vector2.zero)
+        {
+            lastDirection = Vector3.zero;
+        }
+
+        //selon la rotate du perso   
+        Vector3 moveDirection = transform.TransformDirection(direction);
+
+        Vector3 velocity = moveDirection * moveSpeed;
+        velocity.y = vertical;
+        vertical += gravite * Time.deltaTime;
+
+
+        //pas de mouvement si crouched
+        if (!crouched)
+            controller.Move(velocity * Time.deltaTime);
+
+        //idle
+        animator.SetBool("IsWalking", false);
+        animator.SetBool("IsBacking", false);
+        animator.SetBool("IsRighting", false);
+        animator.SetBool("IsLefting", false);
+
+        if (clickRef.action.ReadValue<float>() > 0 && crouched == false)
+        {
+            Rotate();
+        }
+
+        if (direction == Vector3.forward)
+        {
+            animator.SetBool("IsWalking", true);
+        }
+
+        if (direction == Vector3.back)
+        {
+            animator.SetBool("IsBacking", true);
+        }
+
+        if (direction == Vector3.right)
+        {
+            animator.SetBool("IsRighting", true);
+        }
+
+        if (direction == Vector3.left)
+        {
+            animator.SetBool("IsLefting", true);
+        }
     }
   
 }

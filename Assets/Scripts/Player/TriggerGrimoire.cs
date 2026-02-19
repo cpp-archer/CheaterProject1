@@ -39,6 +39,7 @@ public class TriggerGrimoire : MonoBehaviour
     {
         if (other.CompareTag("player"))
         {
+            player = other.GetComponent<PlayerControlerGood>();
             EPanel.SetActive(true);
             inRange = true;
             Debug.Log("okak ouvertAPPUY SUR E PLS");

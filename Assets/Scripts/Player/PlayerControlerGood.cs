@@ -105,6 +105,12 @@ public class PlayerControlerGood : MonoBehaviour
 
         direction = lastDirection;
 
+        //pour que le perso s'arrete
+        if(stickDirection == Vector2.zero)
+        {
+            lastDirection = Vector3.zero;
+        }
+
         //selon la rotate du perso   
         Vector3 moveDirection = transform.TransformDirection(direction);
 
@@ -118,7 +124,7 @@ public class PlayerControlerGood : MonoBehaviour
         //pas de mouvement si crouched
         if (!crouched)
             controller.Move(velocity * Time.deltaTime);
-            //controller.Move(moveDirection * Time.deltaTime * moveSpeed);
+          //controller.Move(moveDirection * Time.deltaTime * moveSpeed);
 
         //idle
         animator.SetBool("IsWalking", false);

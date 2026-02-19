@@ -29,7 +29,7 @@ public class PlayerControlerGood : MonoBehaviour
 
     //animations
     private Animator animator;
-    private bool canMove = false;
+    public bool canMove = true;
 
 
     private bool haut;

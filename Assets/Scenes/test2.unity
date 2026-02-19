@@ -13626,6 +13626,7 @@ MonoBehaviour:
   moveSpeed: 10
   gravite: -9.806
   groundForce: -2
+  canMove: 1
 --- !u!143 &752743308
 CharacterController:
   m_ObjectHideFlags: 0
@@ -13654,6 +13655,11 @@ CharacterController:
 --- !u!4 &752743310 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5d8e99dbc4e6fce4faab26f965c26a56, type: 3}
+  m_PrefabInstance: {fileID: 909602325}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &752743311 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 5d8e99dbc4e6fce4faab26f965c26a56, type: 3}
   m_PrefabInstance: {fileID: 909602325}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &753941777 stripped
@@ -20714,6 +20720,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TriggerGrimoire
   readActionRef: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  animator: {fileID: 1650814952}
+  anim: {fileID: 752743311}
   EPanel: {fileID: 646305761}
 --- !u!65 &1650814951
 BoxCollider:

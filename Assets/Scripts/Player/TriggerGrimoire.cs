@@ -58,10 +58,13 @@ public class TriggerGrimoire : MonoBehaviour
     private void OnEnable()
     {
         readActionRef.action.performed += ReadGrimoire;
+        readActionRef.action.canceled += stopRead;
+
     }
     private void OnDisable()
     {
         readActionRef.action.performed -= ReadGrimoire;
+        readActionRef.action.canceled -= stopRead;
     }
 
     //au clic on appelle la coroutine de lecture
@@ -69,17 +72,30 @@ public class TriggerGrimoire : MonoBehaviour
     {
         if (inRange && !isReading) //dans la zone + pas deja reading
         {
-            StartCoroutine(ReadCoroutine());
+            StartCoroutine("ReadCoroutine");
 
             Debug.Log("reding");
         }
     }
+
+    //si le joueur arrete d'appuyer sur e pdt 5sec
+    private void stopRead(InputAction.CallbackContext context)
+    {
+        if (isReading)
+        {
+            StopCoroutine("ReadCoroutine"); //ca arrete la coroutine de lecture
+            cancelReading();
+            Debug.Log("lecture ff");
+        }
+    }
+ 
 
     //anim gestion
     private IEnumerator ReadCoroutine()
     {
         isReading = true;
         player.canMove = false;
+       
         animator.SetBool("isRead", true);
         anim.SetBool("IsReading", true);
 
@@ -88,11 +104,23 @@ public class TriggerGrimoire : MonoBehaviour
 
         yield return new WaitForSeconds(5);
 
+        Debug.Log("grim lu");
+
+        cancelReading();
+
+        //animator.SetBool("isRead", false);
+        //anim.SetBool("IsReading", false);
+        //player.canMove = true;
+
+        //isReading = false;
+
+    }
+
+    private void cancelReading()
+    {
         animator.SetBool("isRead", false);
         anim.SetBool("IsReading", false);
         player.canMove = true;
-
         isReading = false;
-
     }
 }

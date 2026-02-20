@@ -72,7 +72,7 @@ public class TriggerGrimoire : MonoBehaviour
     {
         if (inRange && !isReading) //dans la zone + pas deja reading
         {
-            StartCoroutine("ReadCoroutine");
+            StartCoroutine(ReadCoroutine());
 
             Debug.Log("reding");
         }
@@ -83,7 +83,7 @@ public class TriggerGrimoire : MonoBehaviour
     {
         if (isReading)
         {
-            StopCoroutine("ReadCoroutine"); //ca arrete la coroutine de lecture
+            StopCoroutine(ReadCoroutine()); //ca arrete la coroutine de lecture
             cancelReading();
             Debug.Log("lecture ff");
         }

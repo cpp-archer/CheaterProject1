@@ -21,18 +21,34 @@ public class TriggerGrimoire : MonoBehaviour
 
     private PlayerControlerGood player;
 
+
+    public GameObject waterBall;
+    public GameObject waterTrigger;
+
     private void Start()
     {
         EPanel.SetActive(false);
 
-        //animation setup
-        //  animator = GetComponent<Animator>();
-        animator.SetBool("isRead", false);
+        animator.SetBool("isRead", false); //grim
+        anim.SetBool("IsReading", false); //player
 
-
-        anim.SetBool("IsReading", false);
+        waterTrigger.SetActive(false);
     }
 
+    private void Update()
+    {
+        StopStartWater();
+    }
+
+    private void StopStartWater()
+    {
+        if(inRange)
+        {
+            waterBall.SetActive(false);
+            waterTrigger.SetActive(true);
+        }
+
+    }
 
     //en collision avec le grimoire
     private void OnTriggerEnter(Collider other)
@@ -59,7 +75,6 @@ public class TriggerGrimoire : MonoBehaviour
     {
         readActionRef.action.performed += ReadGrimoire;
         readActionRef.action.canceled += stopRead;
-
     }
     private void OnDisable()
     {
@@ -113,7 +128,6 @@ public class TriggerGrimoire : MonoBehaviour
         //player.canMove = true;
 
         //isReading = false;
-
     }
 
     private void cancelReading()

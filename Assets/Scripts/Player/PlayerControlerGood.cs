@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.UIElements;
 using System.Collections;
+using UnityEditor.Experimental.GraphView;
 
 public class PlayerControlerGood : MonoBehaviour
 {
@@ -42,6 +43,7 @@ public class PlayerControlerGood : MonoBehaviour
 
     public AudioSource walkingSound;
     public AudioSource wakingUp;
+    private Vector3 direction;
 
     private void OnEnable()
     {
@@ -67,6 +69,9 @@ public class PlayerControlerGood : MonoBehaviour
 
         //canMove = false;
         //animator.SetTrigger("StandUp");
+
+
+        StartCoroutine(playWalk());
     }
 
     //IEnumerator Start()
@@ -122,7 +127,8 @@ public class PlayerControlerGood : MonoBehaviour
         //Vector3 direction = new Vector3(stickDirection.x, 0, stickDirection.y);
 
         //sinon mon pero avance seul donc init à 0 
-        Vector3 direction = Vector3.zero;
+       
+        direction = Vector3.zero;
 
 
    
@@ -147,14 +153,11 @@ public class PlayerControlerGood : MonoBehaviour
 
         direction = lastDirection;
 
-        if (direction != Vector3.zero && !crouched)
-        {
-            //AudioSource.PlayClipAtPoint(walkingSound, transform.position);
-            //if(!walkingSound.isPlaying) //sinon ca glitch ca le lance plusieurs fois
-            //    walkingSound.Play();
+        //if (direction != Vector3.zero && !crouched)
+        //{
 
-           StartCoroutine(playWalk());
-        }
+        //   StartCoroutine(playWalk());
+        //}
 
 
         //pour que le perso s'arrete
@@ -205,16 +208,23 @@ public class PlayerControlerGood : MonoBehaviour
         {
             animator.SetBool("IsLefting", true);
         }
+   
     }
-
     IEnumerator playWalk()
     {
+        //sinon ca glitch ca le lance plusieurs fois
+        //if (!walkingSound.isPlaying)
+        while (true)
+        {
 
-        if (!walkingSound.isPlaying) //sinon ca glitch ca le lance plusieurs fois
-            walkingSound.Play();
+            if (direction != Vector3.zero && !crouched)
+            {
+                walkingSound.Play();
 
-        yield return new WaitForSeconds(2);
+                yield return new WaitForSeconds(2);
+            }
+            yield return new WaitForNextFrameUnit();
+        }
     }
-  
 }
 

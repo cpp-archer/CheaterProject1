@@ -31,7 +31,7 @@ public class PlayerControlerGood : MonoBehaviour
     private Animator animator;
     public bool canMove = true;
 
-
+    //une seul direction
     private bool haut;
     private bool down;
     private bool left;
@@ -40,7 +40,8 @@ public class PlayerControlerGood : MonoBehaviour
     private Vector3 lastDirection = Vector3.zero;
 
 
-    public AudioClip walkingSound;
+    public AudioSource walkingSound;
+    public AudioSource wakingUp;
 
     private void OnEnable()
     {
@@ -67,6 +68,7 @@ public class PlayerControlerGood : MonoBehaviour
         //canMove = false;
         //animator.SetTrigger("StandUp");
     }
+
     //IEnumerator Start()
     //{
     //    controller = GetComponent<CharacterController>();
@@ -75,6 +77,7 @@ public class PlayerControlerGood : MonoBehaviour
     //    animator.SetTrigger("StandUp");
     //    yield return new WaitForSeconds(6f);
     //    canMove = true;
+    // wakingUp.Play();
     //}
 
     void Update()
@@ -121,17 +124,8 @@ public class PlayerControlerGood : MonoBehaviour
         //sinon mon pero avance seul donc init à 0 
         Vector3 direction = Vector3.zero;
 
-        //bool isMoving = false;
 
-        if(direction != Vector3.zero && !crouched)
-        {
-            //  isMoving = true;
-            AudioSource.PlayClipAtPoint(walkingSound, transform.position);
-        }
- 
-
-
-
+   
         //eviter les diagonales (1,1) etc 
         if (stickDirection == Vector2.up) //(0,1)
         {
@@ -153,6 +147,15 @@ public class PlayerControlerGood : MonoBehaviour
 
         direction = lastDirection;
 
+        if (direction != Vector3.zero && !crouched)
+        {
+            //AudioSource.PlayClipAtPoint(walkingSound, transform.position);
+            if(!walkingSound.isPlaying) //sinon ca glitch ca le lance plusieurs fois
+                walkingSound.Play();
+
+        }
+
+
         //pour que le perso s'arrete
         if (stickDirection == Vector2.zero)
         {
@@ -171,7 +174,7 @@ public class PlayerControlerGood : MonoBehaviour
         if (!crouched)
             controller.Move(velocity * Time.deltaTime);
 
-        //idle
+        //idle default
         animator.SetBool("IsWalking", false);
         animator.SetBool("IsBacking", false);
         animator.SetBool("IsRighting", false);

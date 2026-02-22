@@ -25,6 +25,10 @@ public class TriggerGrimoire : MonoBehaviour
     public GameObject waterBall;
     public GameObject waterTrigger;
 
+    public AudioSource bubblePop;
+
+    private bool waterOn = true;
+
     private void Start()
     {
         EPanel.SetActive(false);
@@ -42,12 +46,14 @@ public class TriggerGrimoire : MonoBehaviour
 
     private void StopStartWater()
     {
-        if(inRange)
+        if (inRange && waterOn == true)
         {
             waterBall.SetActive(false);
             waterTrigger.SetActive(true);
+            //AudioSource.PlayClipAtPoint(bubblePop, transform.position);
+            bubblePop.Play();
+            waterOn = false;
         }
-
     }
 
     //en collision avec le grimoire
@@ -68,6 +74,7 @@ public class TriggerGrimoire : MonoBehaviour
         {
             inRange = false;
             EPanel.SetActive(false);
+            waterOn = false;
         }
     }
 

@@ -150,9 +150,10 @@ public class PlayerControlerGood : MonoBehaviour
         if (direction != Vector3.zero && !crouched)
         {
             //AudioSource.PlayClipAtPoint(walkingSound, transform.position);
-            if(!walkingSound.isPlaying) //sinon ca glitch ca le lance plusieurs fois
-                walkingSound.Play();
+            //if(!walkingSound.isPlaying) //sinon ca glitch ca le lance plusieurs fois
+            //    walkingSound.Play();
 
+           StartCoroutine(playWalk());
         }
 
 
@@ -204,6 +205,15 @@ public class PlayerControlerGood : MonoBehaviour
         {
             animator.SetBool("IsLefting", true);
         }
+    }
+
+    IEnumerator playWalk()
+    {
+
+        if (!walkingSound.isPlaying) //sinon ca glitch ca le lance plusieurs fois
+            walkingSound.Play();
+
+        yield return new WaitForSeconds(2);
     }
   
 }

@@ -14154,7 +14154,7 @@ MonoBehaviour:
   rotationRef: {fileID: -9043991227335500799, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   clickRef: {fileID: -2425766710235386675, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   crouchRef: {fileID: 7040659881675835329, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  moveSpeed: 10
+  moveSpeed: 3
   gravite: -9.806
   groundForce: -2
   canMove: 1

@@ -40,6 +40,8 @@ public class PlayerControlerGood : MonoBehaviour
     private Vector3 lastDirection = Vector3.zero;
 
 
+    public AudioClip walkingSound;
+
     private void OnEnable()
     {
         crouchRef.action.Enable();
@@ -78,7 +80,10 @@ public class PlayerControlerGood : MonoBehaviour
     void Update()
     {
         if (canMove)
+        {
             Move();
+            //AudioSource.PlayClipAtPoint(walkingSound, transform.position);
+        }
     }
 
     //rotate la souris
@@ -115,6 +120,16 @@ public class PlayerControlerGood : MonoBehaviour
 
         //sinon mon pero avance seul donc init à 0 
         Vector3 direction = Vector3.zero;
+
+        //bool isMoving = false;
+
+        if(direction != Vector3.zero && !crouched)
+        {
+            //  isMoving = true;
+            AudioSource.PlayClipAtPoint(walkingSound, transform.position);
+        }
+ 
+
 
 
         //eviter les diagonales (1,1) etc 

@@ -4,6 +4,8 @@ using UnityEngine.UIElements;
 
 public class Drowns : MonoBehaviour
 {
+
+    public AudioSource jumpWater;
     public GameObject panelLose;
     void Start()
     {
@@ -20,6 +22,7 @@ public class Drowns : MonoBehaviour
         if (other.CompareTag("player"))
         {         
             StartCoroutine(untilPanel());
+            jumpWater.Play();
         }
     }
     

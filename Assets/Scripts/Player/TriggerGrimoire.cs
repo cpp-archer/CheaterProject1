@@ -111,7 +111,7 @@ public class TriggerGrimoire : MonoBehaviour
     {
         if (isReading)
         {
-            StopCoroutine(ReadCoroutine()); //ca arrete la coroutine de lecture
+           // StopCoroutine(ReadCoroutine()); //ca arrete la coroutine de lecture
             cancelReading();
             waterAura.SetActive(false);
             
@@ -131,7 +131,21 @@ public class TriggerGrimoire : MonoBehaviour
 
         Debug.Log("reading");
 
-        yield return new WaitForSeconds(5);
+        float timer = 0f;
+        float readTime = 5f;
+
+        while (timer < readTime)
+        {
+            if (!readActionRef.action.IsPressed())
+            {
+                cancelReading();
+                yield break;
+            }
+
+            timer += Time.deltaTime;
+            yield return null;
+        }
+      //  yield return new WaitForSeconds(5);
 
         Debug.Log("grim lu");
 

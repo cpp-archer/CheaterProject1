@@ -6364,8 +6364,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1433013135}
-  - {fileID: 1963262906}
   - {fileID: 1958129220}
+  - {fileID: 1963262906}
   m_Father: {fileID: 1102556289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -20749,7 +20749,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1963262909}
+      - m_Target: {fileID: 1193397893}
         m_TargetAssemblyTypeName: closePanel, Assembly-CSharp
         m_MethodName: closePanelBack
         m_Mode: 1

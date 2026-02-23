@@ -17,17 +17,9 @@ public class CamTriggerSwitch : MonoBehaviour
 
     private void Start()
     {
-        //cam1.SetActive(true);
-        //cam2.SetActive(false);
-        //cam3.SetActive(false);
+
         SwitchCam(cam1);
         ordre = 1;
-
-        //cam1C = cam1.GetComponent<Collider>();
-        //cam2C = cam2.GetComponent<Collider>();
-        //cam3C = cam3C.GetComponent<Collider>();
-
-        //cam3C.enabled = false;     
 
     }
     private void OnTriggerStay(Collider other)
@@ -47,9 +39,6 @@ public class CamTriggerSwitch : MonoBehaviour
             SwitchCam(cam3);
             ordre = 3;
 
-         // return;
-            //cam1C.enabled = false;
-            //cam3C.enabled = true;
         }
 
        else if(other.tag == "wall4" && ordre == 3)
@@ -57,14 +46,7 @@ public class CamTriggerSwitch : MonoBehaviour
             SwitchCam(cam1);
             ordre = 1;
 
-         // return;
-            //cam3C.enabled = false;
-            //cam1C.enabled = true;
         }
-        //cam pont a la 3e pour le retour
-
-        //if(other.tag == "wall1" )
-        //    SwitchCam(cam1);
     }
 
     private void SwitchCam(GameObject cam)

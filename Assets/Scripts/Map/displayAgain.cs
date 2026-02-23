@@ -124,20 +124,7 @@ public class displayAgain : MonoBehaviour
             //    lastObject = false;
         }
     }
-        //on genere sur la map les balises de patrouille de li'a
-    //private void GenBalises()
-    //{
 
-    //    for (int i = 0; i < BalisesSpawnpoints.Length-1; i++)
-    //    {
-    //        float randomX = Random.Range(boundsBalises.min.x, boundsBalises.max.x);
-    //        float randomZ = Random.Range(boundsBalises.min.z, boundsBalises.max.z);
-    //        float randomY = boundsBalises.max.y;
-
-    //        BalisesSpawnpoints[i].position = new Vector3(randomX, randomY, randomZ);
-    //        BalisesSpawnpoints[i].transform.parent = balises.transform;
-    //    }
-    //}
 
     //on genere le pont a une des 3 pos possible et on deplace le grimoire devant le pont
     private void pagePont()

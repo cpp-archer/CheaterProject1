@@ -7,30 +7,29 @@ using UnityEngine.InputSystem.EnhancedTouch;
 public class TriggerGrimoire : MonoBehaviour
 {
     public InputActionReference readActionRef;
+    private PlayerControlerGood player;
 
     public Animator animator; //animation du grimoire
+    public Animator anim; //animation du perso quand il lira
 
-    public Animator anim; //animation du perso
-
-    //panel de la touche E
+    //panel de la touche E d'interaction
     public GameObject EPanel;
 
     //etats pour ne pas pouvoir read n'importe où
     private bool isReading = false;
     private bool inRange = false;
+    public bool grimIsLu = false;
 
-    private PlayerControlerGood player;
-
+    //decors
+    public GameObject waterAura;
     public GameObject waterBall;
     public GameObject waterTrigger;
 
-    public AudioSource bubblePop;
-
     private bool waterOn = true;
 
-    public GameObject waterAura;
-
+    //sons
     public AudioClip waterBend;
+    public AudioSource bubblePop;
 
     private void Start()
     {
@@ -40,7 +39,6 @@ public class TriggerGrimoire : MonoBehaviour
         anim.SetBool("IsReading", false); //player
 
         waterTrigger.SetActive(false);
-
         waterAura.SetActive(false);
     }
 
@@ -148,15 +146,9 @@ public class TriggerGrimoire : MonoBehaviour
       //  yield return new WaitForSeconds(5);
 
         Debug.Log("grim lu");
-
+        grimIsLu = true;
         cancelReading();
-        
 
-        //animator.SetBool("isRead", false);
-        //anim.SetBool("IsReading", false);
-        //player.canMove = true;
-
-        //isReading = false;
     }
 
     private void cancelReading()

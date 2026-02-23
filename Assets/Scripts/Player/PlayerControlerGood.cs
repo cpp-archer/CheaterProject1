@@ -118,11 +118,6 @@ public class PlayerControlerGood : MonoBehaviour
 
     private void Move()
     {
-        //if (!canMove)
-        //{
-        //    lastDirection = Vector3.zero;
-        //}
-
         Vector2 stickDirection = moveActionRef.action.ReadValue<Vector2>();
         //Vector3 direction = new Vector3(stickDirection.x, 0, stickDirection.y);
 
@@ -130,8 +125,6 @@ public class PlayerControlerGood : MonoBehaviour
        
         direction = Vector3.zero;
 
-
-   
         //eviter les diagonales (1,1) etc 
         if (stickDirection == Vector2.up) //(0,1)
         {
@@ -152,13 +145,6 @@ public class PlayerControlerGood : MonoBehaviour
         //donc si j'appuie sur 2keys ca correspond a aucune des conditions
 
         direction = lastDirection;
-
-        //if (direction != Vector3.zero && !crouched)
-        //{
-
-        //   StartCoroutine(playWalk());
-        //}
-
 
         //pour que le perso s'arrete
         if (stickDirection == Vector2.zero)

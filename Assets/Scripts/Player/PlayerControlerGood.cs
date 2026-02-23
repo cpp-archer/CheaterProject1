@@ -42,7 +42,7 @@ public class PlayerControlerGood : MonoBehaviour
 
 
     public AudioSource walkingSound;
-    public AudioSource wakingUp;
+    //public AudioSource wakingUp;
     private Vector3 direction;
 
     private void OnEnable()

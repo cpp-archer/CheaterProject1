@@ -21,13 +21,16 @@ public class TriggerGrimoire : MonoBehaviour
 
     private PlayerControlerGood player;
 
-
     public GameObject waterBall;
     public GameObject waterTrigger;
 
     public AudioSource bubblePop;
 
     private bool waterOn = true;
+
+    public GameObject waterAura;
+
+    public AudioClip waterBend;
 
     private void Start()
     {
@@ -37,6 +40,8 @@ public class TriggerGrimoire : MonoBehaviour
         anim.SetBool("IsReading", false); //player
 
         waterTrigger.SetActive(false);
+
+        waterAura.SetActive(false);
     }
 
     private void Update()
@@ -95,8 +100,9 @@ public class TriggerGrimoire : MonoBehaviour
         if (inRange && !isReading) //dans la zone + pas deja reading
         {
             StartCoroutine(ReadCoroutine());
-
+            waterAura.SetActive(true);
             Debug.Log("reding");
+            AudioSource.PlayClipAtPoint(waterBend, transform.position);
         }
     }
 
@@ -107,6 +113,8 @@ public class TriggerGrimoire : MonoBehaviour
         {
             StopCoroutine(ReadCoroutine()); //ca arrete la coroutine de lecture
             cancelReading();
+            waterAura.SetActive(false);
+            
             Debug.Log("lecture ff");
         }
     }
@@ -123,12 +131,12 @@ public class TriggerGrimoire : MonoBehaviour
 
         Debug.Log("reading");
 
-
         yield return new WaitForSeconds(5);
 
         Debug.Log("grim lu");
 
         cancelReading();
+        
 
         //animator.SetBool("isRead", false);
         //anim.SetBool("IsReading", false);
@@ -143,5 +151,6 @@ public class TriggerGrimoire : MonoBehaviour
         anim.SetBool("IsReading", false);
         player.canMove = true;
         isReading = false;
+        waterAura.SetActive(false);
     }
 }

@@ -7,12 +7,14 @@ public class finishZone : MonoBehaviour
     public Transform[] finishSpawn;
 
     public GameObject zone;
-    //public GameObject panelWin;
 
+
+    //public GameObject panelWin;
    // public Animator animationFinish;
 
   
-    private TriggerGrimoire GrimLu;
+    public TriggerGrimoire GrimLu;
+    private bool zoneHere = false;
     private void Start()
     {
         zone.SetActive(false);
@@ -20,10 +22,11 @@ public class finishZone : MonoBehaviour
     }
     private void Update()
     {
-        if(GrimLu.grimIsLu)
+        if(GrimLu.grimIsLu && !zoneHere)
         {
             zone.SetActive(true);
             GenfinishZone();
+            zoneHere = true;
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -50,12 +53,13 @@ public class finishZone : MonoBehaviour
         //print(rdm);
 
         GameObject zoneFinish = Instantiate(zone);
-       
+        //zone.transform.position = finishSpawn[rdm].position;
+        //zone.SetActive(true);
         zoneFinish.transform.parent = finishSpawn[rdm];
         zoneFinish.transform.localPosition = Vector3.zero;
 
 
-        Vector3 grimPos = new Vector3(zoneFinish.transform.position.x, zoneFinish.transform.position.y, zoneFinish.transform.position.z + 1.5f);
+        //Vector3 grimPos = new Vector3(zoneFinish.transform.position.x, zoneFinish.transform.position.y, zoneFinish.transform.position.z + 1.5f);
 
     }
 

@@ -18,6 +18,7 @@ public class TriggerGrimoire : MonoBehaviour
     //etats pour ne pas pouvoir read n'importe où
     private bool isReading = false;
     private bool inRange = false;
+
     public bool grimIsLu = false;
 
     //decors

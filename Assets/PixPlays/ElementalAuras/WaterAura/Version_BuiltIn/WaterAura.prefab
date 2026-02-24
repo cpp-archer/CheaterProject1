@@ -4856,6 +4856,8 @@ GameObject:
   - component: {fileID: 4378209036662081742}
   - component: {fileID: -4135819851444712456}
   - component: {fileID: -6320966296925528365}
+  - component: {fileID: 6486145004669539019}
+  - component: {fileID: 4460724998664772842}
   m_Layer: 0
   m_Name: WaterAura
   m_TagString: Untagged
@@ -4909,3 +4911,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Vfx: {fileID: 5089824811124258908}
+--- !u!65 &6486145004669539019
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2987979887945417987}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.663714, y: 2.8654757, z: 2.817364}
+  m_Center: {x: 0.1275949, y: 0.9327376, z: 0.10615971}
+--- !u!54 &4460724998664772842
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2987979887945417987}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

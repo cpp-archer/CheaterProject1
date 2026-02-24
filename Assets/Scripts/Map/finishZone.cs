@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class finishZone : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class finishZone : MonoBehaviour
     public GameObject zone;
 
 
-    //public GameObject panelWin;
+    public GameObject panelWin;
    // public Animator animationFinish;
 
   
@@ -18,6 +19,7 @@ public class finishZone : MonoBehaviour
     private void Start()
     {
         zone.SetActive(false);
+        panelWin.SetActive(false);
         //animationFinish.SetBool("IsFinish", false);
     }
     private void Update()
@@ -42,8 +44,8 @@ public class finishZone : MonoBehaviour
     {
       //  animationFinish.SetBool("IsFinish", true);
 
-        yield return new WaitForSeconds(5f);
-        // panelWin.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        panelWin.SetActive(true);
         Debug.Log("winnn");
     }
 
@@ -53,11 +55,12 @@ public class finishZone : MonoBehaviour
         //print(rdm);
 
         GameObject zoneFinish = Instantiate(zone);
-        //zone.transform.position = finishSpawn[rdm].position;
-        //zone.SetActive(true);
         zoneFinish.transform.parent = finishSpawn[rdm];
         zoneFinish.transform.localPosition = Vector3.zero;
+        zoneFinish.SetActive(true);
 
+        //zone.transform.position = finishSpawn[rdm].position;
+        //zone.SetActive(true);
 
         //Vector3 grimPos = new Vector3(zoneFinish.transform.position.x, zoneFinish.transform.position.y, zoneFinish.transform.position.z + 1.5f);
 

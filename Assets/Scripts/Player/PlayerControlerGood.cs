@@ -42,7 +42,7 @@ public class PlayerControlerGood : MonoBehaviour
 
 
     public AudioSource walkingSound;
-    //public AudioSource wakingUp;
+    public AudioSource wakingUp;
     private Vector3 direction;
 
     private void OnEnable()
@@ -60,30 +60,32 @@ public class PlayerControlerGood : MonoBehaviour
         crouchRef.action.Disable();
     }
 
-    void Start()
-    {
-        //recuperation 
-        controller = GetComponent<CharacterController>();
-        animator = controller.GetComponent<Animator>();
-        //controller.height = 2f;
-
-        //canMove = false;
-        //animator.SetTrigger("StandUp");
-
-
-        StartCoroutine(playWalk());
-    }
-
-    //IEnumerator Start()
+    //void Start()
     //{
+    //    //recuperation 
     //    controller = GetComponent<CharacterController>();
     //    animator = controller.GetComponent<Animator>();
+    //    //controller.height = 2f;
 
-    //    animator.SetTrigger("StandUp");
-    //    yield return new WaitForSeconds(6f);
-    //    canMove = true;
-    // wakingUp.Play();
+    //    //canMove = false;
+    //    //animator.SetTrigger("StandUp");
+
+
+    //    StartCoroutine(playWalk());
     //}
+
+    IEnumerator Start()
+    {
+        controller = GetComponent<CharacterController>();
+        animator = controller.GetComponent<Animator>();
+
+        canMove = false;
+        animator.SetTrigger("StandUp");
+        yield return new WaitForSeconds(6f);
+        canMove = true;
+        wakingUp.Play();
+        StartCoroutine(playWalk());
+    }
 
     void Update()
     {

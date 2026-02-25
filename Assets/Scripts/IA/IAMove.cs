@@ -28,8 +28,8 @@ public class IAMove : MonoBehaviour
     private Transform[] currentBande;
     private Transform[] points;
 
-    private int bandeIndex = 0;
-    private int pointToGo = 0;
+    //private int bandeIndex = 0;
+   // private int pointToGo = 0;
 
     public Transform grimPoint;
 

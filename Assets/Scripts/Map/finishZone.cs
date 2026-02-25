@@ -27,7 +27,7 @@ public class finishZone : MonoBehaviour
     }
     private void Update()
     {
-        if(GrimLu.grimIsLu ==true && !zoneHere)
+        if(GrimLu.grimIsLu  && !zoneHere)
         {
             zone.SetActive(true);
             GenfinishZone();

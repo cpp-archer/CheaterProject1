@@ -5,12 +5,14 @@ public class OpenMenu : MonoBehaviour
 {
     public GameObject menuOptions;
     public InputActionReference openMenuActionRef;
-
+    public GameObject aidePanel;
+    
 
     void Start()
     {
         menuOptions.SetActive(false);
-        Time.timeScale = 1;
+        Time.timeScale = 0;
+        aidePanel.SetActive(true);
     }
 
     public void menuClick() //pour le click souris

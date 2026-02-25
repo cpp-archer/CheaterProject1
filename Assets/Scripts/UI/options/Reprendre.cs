@@ -6,6 +6,7 @@ public class Reprendre : MonoBehaviour
     public void reprendre()
     {
         panelPauseMenu.SetActive(false);
+        Time.timeScale = 1f;
     }
 }
 

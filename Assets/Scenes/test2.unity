@@ -24238,6 +24238,7 @@ MonoBehaviour:
   - {fileID: 1069641899}
   - {fileID: 1405561892}
   grimPoint: {fileID: 1882745005}
+  waitAtBalise: 6
 --- !u!1 &1447389398
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
 using UnityEngine.UIElements;
+using UnityEngine.InputSystem.XR;
 
 public class IAMove : MonoBehaviour
 {
@@ -32,75 +33,40 @@ public class IAMove : MonoBehaviour
 
     public Transform grimPoint;
 
+    //public Animator idleAnim;
+    public float waitAtBalise;
+    private bool waiting = false;
+
+   private Animator animatorIA;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        //GotoNextPoint();
 
         target = GameObject.FindGameObjectWithTag("player").transform;
         agent.enabled = true;
 
-        //ChangeBande();
-
         panelLoose.SetActive(false);
+        animatorIA = GetComponent<Animator>();
 
+        animatorIA.SetBool("isIdle", false);
         Shuffle(2);
     }
     void Update()
     {
         if (!playerDetected)
         {
-            if (!agent.pathPending && agent.remainingDistance < 0.5f)
-                GotoNextPoint();
+            //if (!agent.pathPending && agent.remainingDistance < 0.5f)
+            //    GotoNextPoint();
+
+            if(!agent.pathPending && agent.remainingDistance < 0.5f && !waiting)
+            {
+                StartCoroutine(idlePoint());
+            }
+
         }
       Detection();
         //DrawViewCone();
     }
-
-    //private void ChangeBande()
-    //{
-    //    if (bandeIndex == 0)
-    //    {
-    //        currentBande = bande1;
-    //    }
-    //    else if (bandeIndex == 1)
-    //    {
-    //        currentBande = bande2;
-    //    }
-    //    else
-    //    {
-    //        currentBande = bande3;
-    //    }
-
-    //    //on choisi 1 ou 2 points a visiter
-    //    // pointToGo = Random.Range(2, 3);
-    //    pointToGo = 2;
-
-    //    points = new Transform[pointToGo + 1]; //+1 pour le grimoire
-
-    //    //on parcours les points a visiter
-    //    for (int i = 0; i < pointToGo; i++)
-    //    {
-    //        //on choisit un point random dans la bande
-    //        int rdm = Random.Range(0, currentBande.Length);
-    //        points[i] = currentBande[rdm];
-
-    //        Debug.Log("point" + points[i].name + "bande" + bandeIndex);
-    //    }
-
-    //    points[pointToGo] = grimPoint;
-    //    Debug.Log("gogrimoire");
-
-    //    //pour revenir a bande1
-    //    bandeIndex++;
-    //    if (bandeIndex > 2)
-    //    {
-    //        bandeIndex = 0;
-    //    }
-    //    Debug.Log(bandeIndex);
-    //    destPoint = 0;
-    //    GotoNextPoint();
-    //}
 
     private void Shuffle(int numberByBande)
     {
@@ -143,23 +109,6 @@ public class IAMove : MonoBehaviour
         agent.SetDestination(points[destPoint].position);
 
         destPoint++;
-
-
-        //agent.destination = points[destPoint].position;
-        //agent.SetDestination(points[destPoint].position);
-
-
-
-        //si on a fait tout les points de la bande (donc le rdm entre 3 et 6)
-        //if(destPoint >= points.Length)
-        //if(destPoint==points.Length-1)
-        //{
-        //ChangeBande();
-        //return; //pattern fini on se taille de la bande
-        //}
-        //destPoint++; //pour keep track du rdm
-        //destPoint = (destPoint + 1) % points.Length;
-        //destPoint = Random.Range(0, points.Length);
     }
 
 
@@ -219,6 +168,22 @@ public class IAMove : MonoBehaviour
         agent.SetDestination(target.position);
             panelLoose.SetActive(true);
         }
+    }
+
+    IEnumerator idlePoint()
+    {
+        waiting = true;
+        agent.isStopped = true;
+
+        animatorIA.SetBool("isIdle", true);
+
+        yield return new WaitForSeconds(3f);
+
+        animatorIA.SetBool("isIdle", false);
+
+        agent.isStopped = false;
+        GotoNextPoint();
+        waiting = false;
     }
 
 }

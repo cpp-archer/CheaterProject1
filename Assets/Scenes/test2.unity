@@ -6661,11 +6661,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1993665373}
-  - {fileID: 1825476720}
   - {fileID: 1728546508}
+  - {fileID: 1825476720}
+  - {fileID: 483477770}
   - {fileID: 2040468637}
   - {fileID: 26161327}
-  - {fileID: 483477770}
   m_Father: {fileID: 1727833069}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &199260764
@@ -14939,14 +14939,14 @@ RectTransform:
   m_GameObject: {fileID: 646305761}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.020990191, y: 0.020990191, z: 0.020990191}
+  m_LocalScale: {x: 0.040137444, y: 0.040137444, z: 0.040137444}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1102556289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -39.2196, y: -24.1645}
+  m_AnchoredPosition: {x: -69.67, y: -24.1645}
   m_SizeDelta: {x: -381.2805, y: 234.92}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &646305763
@@ -19108,12 +19108,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1210142697}
   - {fileID: 1448173325}
-  - {fileID: 45838033}
-  - {fileID: 2109432286}
   - {fileID: 724120160}
   - {fileID: 1269480414}
+  - {fileID: 2109432286}
+  - {fileID: 45838033}
+  - {fileID: 1210142697}
   m_Father: {fileID: 1727833069}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &994269776 stripped
@@ -26053,7 +26053,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d5c91634a6be634aa0d10f9da2978d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OpenHelp
-  help: {fileID: 799413651}
 --- !u!114 &1621931404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29359,7 +29358,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f39c042cbd7772499fe5bf67f4ef453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OpenKeys
-  touches: {fileID: 122430883}
 --- !u!114 &1948735047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30140,12 +30138,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1156067012}
-  - {fileID: 1133806249}
-  - {fileID: 341105490}
   - {fileID: 209809223}
-  - {fileID: 1475058351}
+  - {fileID: 341105490}
+  - {fileID: 1133806249}
   - {fileID: 1486559364}
+  - {fileID: 1475058351}
+  - {fileID: 1156067012}
   m_Father: {fileID: 1727833069}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2004085043
@@ -30276,26 +30274,26 @@ MonoBehaviour:
   - {fileID: 587600298}
   grimoire: {fileID: 1432649694}
   bande1:
-  - {fileID: 1156067012}
-  - {fileID: 1133806249}
-  - {fileID: 341105490}
   - {fileID: 209809223}
-  - {fileID: 1475058351}
+  - {fileID: 341105490}
+  - {fileID: 1133806249}
   - {fileID: 1486559364}
+  - {fileID: 1475058351}
+  - {fileID: 1156067012}
   bande2:
-  - {fileID: 1993665373}
-  - {fileID: 1825476720}
-  - {fileID: 1728546508}
-  - {fileID: 2040468637}
-  - {fileID: 26161327}
-  - {fileID: 483477770}
-  bande3:
-  - {fileID: 1210142697}
   - {fileID: 1448173325}
-  - {fileID: 45838033}
-  - {fileID: 2109432286}
   - {fileID: 724120160}
   - {fileID: 1269480414}
+  - {fileID: 2109432286}
+  - {fileID: 45838033}
+  - {fileID: 1210142697}
+  bande3:
+  - {fileID: 1993665373}
+  - {fileID: 1728546508}
+  - {fileID: 1825476720}
+  - {fileID: 483477770}
+  - {fileID: 2040468637}
+  - {fileID: 26161327}
   terrainGrim: {fileID: 12950609}
 --- !u!1 &2025936660
 GameObject:

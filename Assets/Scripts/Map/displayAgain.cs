@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.AI.Navigation;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -95,6 +96,11 @@ public class displayAgain : MonoBehaviour
 
     private void GenBandes(Transform[] bande, int[] pattern)
     {
+        //pour pas remettre 2 fois le meme objet, vu que yen a beaucoup autant que ce soit diverse
+        //List<GameObject> okObstacle = new List<GameObject>(obstacles);
+        //List<GameObject> okHides = new List<GameObject>(hides);
+
+
         //bool lastObject = false;
         for (int i = 0; i < bande.Length; i++)
         {
@@ -102,16 +108,19 @@ public class displayAgain : MonoBehaviour
     
             //if(!lastObject){ 
                 
-                if (pattern[i] == 1){
+                if (pattern[i] == 1) { //} && okObstacle.Count > 0){
                     int rdm = Random.Range(0, obstacles.Length);
                     prefab = obstacles[rdm];
-                }
+                    //okObstacle.RemoveAt(rdm);
+            }
 
-                if (pattern[i] == 2){
+                if (pattern[i] == 2) { //} && okHides.Count > 0){
                     int rdm = Random.Range(0, hides.Length);
                     prefab = hides[rdm];
-                }
-           // }
+                   // okHides.RemoveAt(rdm);
+
+            }
+            // }
 
             if (prefab != null) { 
                 GameObject obj = Instantiate(prefab);// (objSpawn[i]);

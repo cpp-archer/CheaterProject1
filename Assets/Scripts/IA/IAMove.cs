@@ -11,7 +11,7 @@ public class IAMove : MonoBehaviour
 
     //etat du catch player
     public Transform target;
-    public float viewDistance = 20f;
+    public float viewDistance = 10f;
     public float viewAngle = 45f;
 
     private bool playerDetected;
@@ -31,8 +31,6 @@ public class IAMove : MonoBehaviour
     private int pointToGo = 0;
 
     public Transform grimPoint;
-
-
 
     void Start()
     {
@@ -55,8 +53,8 @@ public class IAMove : MonoBehaviour
             if (!agent.pathPending && agent.remainingDistance < 0.5f)
                 GotoNextPoint();
         }
-     //  Detection();
-        DrawViewCone();
+      Detection();
+        //DrawViewCone();
     }
 
     //private void ChangeBande()
@@ -165,61 +163,62 @@ public class IAMove : MonoBehaviour
     }
 
 
-    //private void Detection()
-    //{
-    //    //distance
-    //    float playerDistance = Vector3.Distance(target.position, transform.position);
-
-    //    //si le joueur est pas assez proche on fait nada
-    //    if (playerDistance > viewDistance)
-    //        return;
-
-
-    //    //angle
-    //    Vector3 targetDir = target.position + Vector3.up * 2 - transform.position;
-    //    Debug.DrawRay(transform.position, targetDir, Color.red, Time.deltaTime);
-
-    //    float angle = Vector3.Angle(targetDir, transform.forward);
-    //    if (angle > viewAngle)
-    //        return;
-
-    //    //raycast
-    //    RaycastHit hit;
-    //    if (Physics.Raycast(transform.position, targetDir, out hit, viewDistance))
-    //    {
-    //        if (hit.collider.gameObject.tag == "player") //l'ia nous suit
-    //        {
-    //            Debug.Log("I see you");
-    //            playerDetected = true;
-    //            looser();
-    //        }
-    //        else
-    //        {
-    //            Debug.Log("I don't see you");
-    //        }
-    //    }
-    //}
-    void DrawViewCone()
+    private void Detection()
     {
-        int rayCount = 15;
-        float stepAngle = (viewAngle * 2) / rayCount;
+        //distance
+        float playerDistance = Vector3.Distance(target.position, transform.position);
 
-        for (int i = 0; i <= rayCount; i++)
+        //si le joueur est pas assez proche on fait nada
+        if (playerDistance > viewDistance)
+            return;
+
+
+        //angle
+        Vector3 targetDir = target.position + Vector3.up * 2 - transform.position;
+        Debug.DrawRay(transform.position, targetDir, Color.red, Time.deltaTime);
+
+        float angle = Vector3.Angle(targetDir, transform.forward);
+        if (angle > viewAngle)
+            return;
+
+        //raycast
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, targetDir, out hit, viewDistance))
         {
-            float angle = -viewAngle + stepAngle * i;
-            Vector3 dir = Quaternion.Euler(0, angle, 0) * transform.forward;
-
-            Debug.DrawRay(transform.position, dir * viewDistance, Color.yellow);
+            if (hit.collider.gameObject.tag == "player") //l'ia nous suit
+            {
+                Debug.Log("I see you");
+                playerDetected = true;
+                looser();
+                Time.timeScale = 0f;
+            }
+            else
+            {
+                Debug.Log("I don't see you");
+            }
         }
     }
+    //void DrawViewCone()
+    //{
+    //    int rayCount = 15;
+    //    float stepAngle = (viewAngle * 2) / rayCount;
+
+    //    for (int i = 0; i <= rayCount; i++)
+    //    {
+    //        float angle = -viewAngle + stepAngle * i;
+    //        Vector3 dir = Quaternion.Euler(0, angle, 0) * transform.forward;
+
+    //        Debug.DrawRay(transform.position, dir * viewDistance, Color.yellow);
+    //    }
+    //}
     void looser()
     {
-        //if(playerDetected == true)
-        //{
-        Debug.Log("perdu");
+        if (playerDetected == true)
+        {
+            Debug.Log("perdu");
         agent.SetDestination(target.position);
-        //panelLoose.SetActive(true);
-        //}
+            panelLoose.SetActive(true);
+        }
     }
 
 }

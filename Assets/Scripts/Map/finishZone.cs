@@ -8,7 +8,7 @@ public class finishZone : MonoBehaviour
     public Transform[] finishSpawn;
 
     public GameObject zone;
-
+    private Collider zoneCollider;
 
     public GameObject panelWin;
    // public Animator animationFinish;
@@ -21,6 +21,9 @@ public class finishZone : MonoBehaviour
         zone.SetActive(false);
         panelWin.SetActive(false);
         //animationFinish.SetBool("IsFinish", false);
+
+        zoneCollider = GetComponent<Collider>();    
+        zoneCollider.enabled = false;
     }
     private void Update()
     {
@@ -29,6 +32,7 @@ public class finishZone : MonoBehaviour
             zone.SetActive(true);
             GenfinishZone();
             zoneHere = true;
+            zoneCollider.enabled = true;
         }
     }
     private void OnTriggerEnter(Collider other)

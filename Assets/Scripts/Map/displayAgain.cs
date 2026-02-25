@@ -83,15 +83,31 @@ public class displayAgain : MonoBehaviour
         // int[] pattern4 = { 0, 2, 0, 1, 2, 0 };
         int[][] allPattern = { pattern1, pattern2, pattern3 }; //pattern4 };
 
-        int rdm1 = Random.Range(0, 3);
-        int rdm2 = Random.Range(0, 3);
-        int rdm3 = Random.Range(0, 3);
+        //pattern peut se repeter
+        //int rdm1 = Random.Range(0, 3);
+        //int rdm2 = Random.Range(0, 3);
+        //int rdm3 = Random.Range(0, 3);
+        //GenBandes(bande1, allPattern[rdm1]);
+        //GenBandes(bande2, allPattern[rdm2]);
+        //GenBandes(bande3, allPattern[rdm3]);
 
 
-        GenBandes(bande1, allPattern[rdm1]);
-        GenBandes(bande2, allPattern[rdm2]);
-        GenBandes(bande3, allPattern[rdm3]);
+        //ne pas repeter 2 bandes
+        int[] ordre = { 0, 1, 2 };//on randomise l'ordre de ce tab
+
+        for(int i = 0; i< ordre.Length; i++)//i = rdm 1,2,3
+        {
+            int rdm = Random.Range(0, ordre.Length);
+            int save = ordre[i];
+            ordre[i] = ordre[rdm];
+            ordre[rdm] = save;//swap index et nb
+        }
+
+        GenBandes(bande1, allPattern[ordre[0]]);
+        GenBandes(bande2, allPattern[ordre[1]]);
+        GenBandes(bande3, allPattern[ordre[2]]);
     }
+
 
 
     private void GenBandes(Transform[] bande, int[] pattern)

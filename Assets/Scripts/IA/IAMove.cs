@@ -13,7 +13,7 @@ public class IAMove : MonoBehaviour
     //etat du catch player
     public Transform target;
     public float viewDistance = 10f;
-    public float viewAngle = 45f;
+    public float viewAngle = 20f;
 
     private bool playerDetected;
 
@@ -118,8 +118,8 @@ public class IAMove : MonoBehaviour
         float playerDistance = Vector3.Distance(target.position, transform.position);
 
         //si le joueur est pas assez proche on fait nada
-        if (playerDistance > viewDistance)
-            return;
+        //if (playerDistance > viewDistance)
+        //    return;
 
 
         //angle

@@ -8,7 +8,7 @@ public class finishZone : MonoBehaviour
     public Transform[] finishSpawn;
 
     public GameObject zone;
-    private Collider zoneCollider;
+   // private Collider zoneCollider;
 
     public GameObject panelWin;
    // public Animator animationFinish;
@@ -22,22 +22,22 @@ public class finishZone : MonoBehaviour
         panelWin.SetActive(false);
         //animationFinish.SetBool("IsFinish", false);
 
-        zoneCollider = GetComponent<Collider>();    
-        zoneCollider.enabled = false;
+        //zoneCollider = GetComponent<Collider>();    
+        //zoneCollider.enabled = false;
     }
     private void Update()
     {
-        if(GrimLu.grimIsLu && !zoneHere)
+        if(GrimLu.grimIsLu ==true && !zoneHere)
         {
             zone.SetActive(true);
             GenfinishZone();
             zoneHere = true;
-            zoneCollider.enabled = true;
+           // zoneCollider.enabled = true;
         }
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("player"))
+        if (other.CompareTag("player") && GrimLu.grimIsLu == true)
         { 
             other.transform.position = finishSpawn[0].position;
             StartCoroutine(animeWin());

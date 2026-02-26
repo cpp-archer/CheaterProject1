@@ -11,8 +11,8 @@ public class displayAgain : MonoBehaviour
     public GameObject terrain;
     public GameObject terrainPatrouille;
 
-    private Bounds bounds;
-    private Bounds boundsBalises;
+    //private Bounds bounds;
+    //private Bounds boundsBalises;
 
     //public GameObject[] objSpawn;
     public Transform[] objPointsSpawn;
@@ -21,14 +21,10 @@ public class displayAgain : MonoBehaviour
     public GameObject[] hides;
     public GameObject[] obstacles;
 
-    //pour l'ia et sa patrouille
-    //public Transform[] BalisesSpawnpoints;
-    //public GameObject balises;//DANS LA HIERARCHIE
 
     //navmesh
     private NavMeshSurface navMeshSurface;
-    //private NavMeshSurface navMesh2;
-    //private NavMeshSurface terrainPatrouilleMesh;
+
 
     //prefab du pont vers grimoire
     public GameObject ponts;
@@ -46,51 +42,39 @@ public class displayAgain : MonoBehaviour
     GameObject[] pattern3;
     GameObject[] pattern4;
 
-
+    //rocher grimoire
     public GameObject terrainGrim;
     private NavMeshSurface terrainGrimMesh;
 
     void Awake()
     {
+        //recup navmeshsurface
         navMeshSurface = terrain.GetComponent<NavMeshSurface>();
-        //terrainPatrouilleMesh = terrainPatrouille.GetComponent<NavMeshSurface>();
-
         terrainGrimMesh = terrainGrim.GetComponent<NavMeshSurface>();
 
-        bounds = terrain.GetComponent<Renderer>().bounds;
-        boundsBalises = terrainPatrouille.GetComponent<Renderer>().bounds;
+        //bounds = terrain.GetComponent<Renderer>().bounds;
+        //boundsBalises = terrainPatrouille.GetComponent<Renderer>().bounds;
 
         //generations des elements sur la map
         GenObjets();
-        //GenBalises();
         pagePont();
 
         //navmesh bake à l'awake
         navMeshSurface.BuildNavMesh();
         terrainGrimMesh.BuildNavMesh();
 
-        //terrainPatrouilleMesh.BuildNavMesh();
     }
 
-    //on genere sur la map les objets pour se cacher à des endoits random
+    //on genere les patterns des objets
     private void GenObjets()
     {
 
-        //1 pbstacle 2 cachettes 0 vide chemin
+
+        //1 pbstacle 2 cachettes 0 vide 
         int[] pattern1 = { 1, 0, 2, 0, 2, 1 };
         int[] pattern2 = { 2, 0, 1, 1, 0, 2 };
         int[] pattern3 = { 0, 2, 1, 0, 1, 0 };
-        // int[] pattern4 = { 0, 2, 0, 1, 2, 0 };
-        int[][] allPattern = { pattern1, pattern2, pattern3 }; //pattern4 };
-
-        //pattern peut se repeter
-        //int rdm1 = Random.Range(0, 3);
-        //int rdm2 = Random.Range(0, 3);
-        //int rdm3 = Random.Range(0, 3);
-        //GenBandes(bande1, allPattern[rdm1]);
-        //GenBandes(bande2, allPattern[rdm2]);
-        //GenBandes(bande3, allPattern[rdm3]);
-
+        int[][] allPattern = { pattern1, pattern2, pattern3 }; 
 
         //ne pas repeter 2 bandes
         int[] ordre = { 0, 1, 2 };//on randomise l'ordre de ce tab
@@ -106,15 +90,24 @@ public class displayAgain : MonoBehaviour
         GenBandes(bande1, allPattern[ordre[0]]);
         GenBandes(bande2, allPattern[ordre[1]]);
         GenBandes(bande3, allPattern[ordre[2]]);
+
+
+        //pattern peut se repeter
+        //int rdm1 = Random.Range(0, 3);
+        //int rdm2 = Random.Range(0, 3);
+        //int rdm3 = Random.Range(0, 3);
+        //GenBandes(bande1, allPattern[rdm1]);
+        //GenBandes(bande2, allPattern[rdm2]);
+        //GenBandes(bande3, allPattern[rdm3]);
     }
 
 
-
+    //on place les objets sur chaque bande selon le pattern
     private void GenBandes(Transform[] bande, int[] pattern)
     {
         //pour pas remettre 2 fois le meme objet, vu que yen a beaucoup autant que ce soit diverse
-        //List<GameObject> okObstacle = new List<GameObject>(obstacles);
-        //List<GameObject> okHides = new List<GameObject>(hides);
+        List<GameObject> okObstacle = new List<GameObject>(obstacles);
+        List<GameObject> okHides = new List<GameObject>(hides);
 
 
         //bool lastObject = false;
@@ -124,16 +117,16 @@ public class displayAgain : MonoBehaviour
     
             //if(!lastObject){ 
                 
-                if (pattern[i] == 1) { //} && okObstacle.Count > 0){
+                if (pattern[i] == 1 && okObstacle.Count > 0){
                     int rdm = Random.Range(0, obstacles.Length);
-                    prefab = obstacles[rdm];
-                    //okObstacle.RemoveAt(rdm);
+                    prefab = okObstacle[rdm];
+                   okObstacle.RemoveAt(rdm);
             }
 
-                if (pattern[i] == 2) { //} && okHides.Count > 0){
+                if (pattern[i] == 2 && okHides.Count > 0){
                     int rdm = Random.Range(0, hides.Length);
-                    prefab = hides[rdm];
-                   // okHides.RemoveAt(rdm);
+                    prefab = okHides[rdm];
+                  okHides.RemoveAt(rdm);
 
             }
             // }

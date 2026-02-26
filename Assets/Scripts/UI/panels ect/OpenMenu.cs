@@ -5,26 +5,38 @@ public class OpenMenu : MonoBehaviour
 {
     public GameObject menuOptions;
     public InputActionReference openMenuActionRef;
+    public GameObject aidePanelFirst;
+    public GameObject touchesPanel;
     public GameObject aidePanel;
-    
+
 
     void Start()
     {
         menuOptions.SetActive(false);
         Time.timeScale = 0;
-        aidePanel.SetActive(true);
+        aidePanelFirst.SetActive(true);
+        touchesPanel.SetActive(false);
+        aidePanel.SetActive(false);
     }
 
     public void menuClick() //pour le click souris
     {
+        if (aidePanel.activeSelf || touchesPanel.activeSelf || aidePanel.activeSelf)
+        {
+            aidePanel.SetActive(false);
+            touchesPanel.SetActive(false);
+            menuOptions.SetActive(false);
+            aidePanelFirst.SetActive(false);
+        }
         menuOptions.SetActive(!menuOptions.activeSelf);
-        
-        if(menuOptions.activeSelf)
+
+        if (menuOptions.activeSelf)
             Time.timeScale = 0;
         else
         {
             Time.timeScale = 1;
         }
+
 
     }
 
@@ -40,6 +52,13 @@ public class OpenMenu : MonoBehaviour
 
     public void openMenu(InputAction.CallbackContext context) //pour btn clavier
     {
+        if(aidePanel.activeSelf || touchesPanel.activeSelf || aidePanelFirst.activeSelf)
+        {
+            aidePanel.SetActive(false);
+            touchesPanel.SetActive(false);
+            menuOptions.SetActive(false);
+            aidePanelFirst.SetActive(false);
+        }
         menuOptions.SetActive(!menuOptions.activeSelf);
 
         if (menuOptions.activeSelf)

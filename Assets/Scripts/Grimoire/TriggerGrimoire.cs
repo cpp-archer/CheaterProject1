@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
+using UnityEngine.UI;
 
 public class TriggerGrimoire : MonoBehaviour
 {
@@ -32,8 +33,19 @@ public class TriggerGrimoire : MonoBehaviour
     public AudioClip waterBend;
     public AudioSource bubblePop;
 
+    public GameObject progressBar;
+    public Image fillImg;
+
+    private float readTime = 5f;
+
+    public GameObject dejaLuPanel;
+
     private void Start()
     {
+
+        progressBar.SetActive(false);
+        dejaLuPanel.SetActive(false);
+
         EPanel.SetActive(false);
 
         animator.SetBool("isRead", false); //grim
@@ -96,13 +108,20 @@ public class TriggerGrimoire : MonoBehaviour
     //au clic on appelle la coroutine de lecture
     private void ReadGrimoire(InputAction.CallbackContext context)
     {
+        if (grimIsLu)
+        {
+            StartCoroutine(alrLu());
+            return;
+        }
         if (inRange && !isReading) //dans la zone + pas deja reading
         {
             StartCoroutine(ReadCoroutine());
             waterAura.SetActive(true);
             Debug.Log("reding");
             AudioSource.PlayClipAtPoint(waterBend, transform.position);
+       
         }
+       
     }
 
     //si le joueur arrete d'appuyer sur e pdt 5sec
@@ -124,7 +143,9 @@ public class TriggerGrimoire : MonoBehaviour
     {
         isReading = true;
         player.canMove = false;
-       
+
+        progressBar.SetActive(true);
+
         animator.SetBool("isRead", true);
         anim.SetBool("IsReading", true);
 
@@ -142,6 +163,8 @@ public class TriggerGrimoire : MonoBehaviour
             }
 
             timer += Time.deltaTime;
+
+            fillImg.fillAmount =timer / readTime;
             yield return null;
         }
       //  yield return new WaitForSeconds(5);
@@ -159,5 +182,15 @@ public class TriggerGrimoire : MonoBehaviour
         player.canMove = true;
         isReading = false;
         waterAura.SetActive(false);
+
+        fillImg.fillAmount = 0;
+        progressBar.SetActive(false);
+    }
+
+    IEnumerator alrLu()
+    {
+        dejaLuPanel.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        dejaLuPanel.SetActive(false);
     }
 }

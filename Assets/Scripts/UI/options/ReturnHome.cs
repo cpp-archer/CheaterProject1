@@ -7,6 +7,7 @@ public class ReturnHome : MonoBehaviour
     {
         Debug.Log("bye");
         SceneManager.LoadScene("Home");
+        Time.timeScale = 1;
     }
 
 }

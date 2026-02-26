@@ -81,7 +81,7 @@ public class PlayerControlerGood : MonoBehaviour
 
         canMove = false;
         animator.SetTrigger("StandUp");
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(4f);
         canMove = true;
         wakingUp.Play();
         StartCoroutine(playWalk());
@@ -211,7 +211,7 @@ public class PlayerControlerGood : MonoBehaviour
 
                 yield return new WaitForSeconds(2);
             }
-            yield return new WaitForNextFrameUnit();
+            yield return null;
         }
     }
 }

@@ -208,7 +208,7 @@ public class IAMove : MonoBehaviour
 
         animatorIA.SetBool("isIdle", true);
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2.5f);
 
         animatorIA.SetBool("isIdle", false);
 

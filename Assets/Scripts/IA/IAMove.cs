@@ -38,6 +38,9 @@ public class IAMove : MonoBehaviour
     private bool waiting = false;
 
    private Animator animatorIA;
+
+    public AudioSource gaspSound;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -49,6 +52,7 @@ public class IAMove : MonoBehaviour
         animatorIA = GetComponent<Animator>();
 
         animatorIA.SetBool("isIdle", false);
+        animatorIA.SetBool("isRunning", false);
         Shuffle(2);
     }
     void Update()
@@ -138,8 +142,8 @@ public class IAMove : MonoBehaviour
             {
                 Debug.Log("I see you");
                 playerDetected = true;
-                looser();
-                Time.timeScale = 0f;
+                StartCoroutine(loose());
+                //Time.timeScale = 0f;
             }
             else
             {
@@ -160,15 +164,42 @@ public class IAMove : MonoBehaviour
     //        Debug.DrawRay(transform.position, dir * viewDistance, Color.yellow);
     //    }
     //}
-    void looser()
+
+    IEnumerator loose()
     {
-        if (playerDetected == true)
+        if(playerDetected == true)
         {
+            agent.isStopped = true;
+            animatorIA.SetBool("isPointing", true);
+            
+            yield return new WaitForSeconds(2f);
+
+            animatorIA.SetBool("isRunning", true);
+            agent.speed = 8f;
+
+            agent.isStopped = false;
+            agent.SetDestination(target.position);
+
             Debug.Log("perdu");
-        agent.SetDestination(target.position);
+
+            gaspSound.Play();
+
+            yield return new WaitForSeconds(2f);
+           
             panelLoose.SetActive(true);
+            Time.timeScale = 0f;
+
         }
     }
+    //void looser()
+    //{
+    //    if (playerDetected == true)
+    //    {
+    //        Debug.Log("perdu");
+    //         agent.SetDestination(target.position);
+    //        panelLoose.SetActive(true);
+    //    }
+    //}
 
     IEnumerator idlePoint()
     {

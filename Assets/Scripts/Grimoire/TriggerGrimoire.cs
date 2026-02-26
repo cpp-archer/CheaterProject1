@@ -111,6 +111,7 @@ public class TriggerGrimoire : MonoBehaviour
         if (grimIsLu)
         {
             StartCoroutine(alrLu());
+            EPanel.SetActive(false);
             return;
         }
         if (inRange && !isReading) //dans la zone + pas deja reading

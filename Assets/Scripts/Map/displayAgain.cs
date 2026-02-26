@@ -15,7 +15,7 @@ public class displayAgain : MonoBehaviour
     //private Bounds boundsBalises;
 
     //public GameObject[] objSpawn;
-    public Transform[] objPointsSpawn;
+    //public Transform[] objPointsSpawn;
 
     //cachettes et obstacles
     public GameObject[] hides;
@@ -68,8 +68,6 @@ public class displayAgain : MonoBehaviour
     //on genere les patterns des objets
     private void GenObjets()
     {
-
-
         //1 pbstacle 2 cachettes 0 vide 
         int[] pattern1 = { 1, 0, 2, 0, 2, 1 };
         int[] pattern2 = { 2, 0, 1, 1, 0, 2 };
@@ -106,8 +104,8 @@ public class displayAgain : MonoBehaviour
     private void GenBandes(Transform[] bande, int[] pattern)
     {
         //pour pas remettre 2 fois le meme objet, vu que yen a beaucoup autant que ce soit diverse
-        List<GameObject> okObstacle = new List<GameObject>(obstacles);
-        List<GameObject> okHides = new List<GameObject>(hides);
+        //List<GameObject> okObstacle = new List<GameObject>(obstacles);
+        //List<GameObject> okHides = new List<GameObject>(hides);
 
 
         //bool lastObject = false;
@@ -117,16 +115,16 @@ public class displayAgain : MonoBehaviour
     
             //if(!lastObject){ 
                 
-                if (pattern[i] == 1 && okObstacle.Count > 0){
+                if (pattern[i] == 1) { //} && okObstacle.Count > 0){
                     int rdm = Random.Range(0, obstacles.Length);
-                    prefab = okObstacle[rdm];
-                   okObstacle.RemoveAt(rdm);
+                    prefab = obstacles[rdm];
+                    //okObstacle.RemoveAt(rdm);
             }
 
-                if (pattern[i] == 2 && okHides.Count > 0){
+                if (pattern[i] == 2) { //} && okHides.Count > 0){
                     int rdm = Random.Range(0, hides.Length);
-                    prefab = okHides[rdm];
-                  okHides.RemoveAt(rdm);
+                    prefab = hides[rdm];
+                   // okHides.RemoveAt(rdm);
 
             }
             // }

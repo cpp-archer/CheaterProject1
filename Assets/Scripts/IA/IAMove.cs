@@ -83,13 +83,13 @@ public class IAMove : MonoBehaviour
             //points[i + 2] = bande3[Random.Range(0, bande3.Length)];
 
             points[0 + i * 3] = bande1[Random.Range(0, bande1.Length)];
-            Debug.Log("Bande 1, point" +  points[0+i*3].name);
+            Debug.Log("B1, point" +  points[0+i*3].name);
             
             points[1 + i * 3] = bande2[Random.Range(0, bande2.Length)];
-            Debug.Log("Bande 2, point" + points[1 + i * 3].name);
+            Debug.Log(" B2, point" + points[1 + i * 3].name);
 
             points[2 + i * 3] = bande3[Random.Range(0, bande3.Length)];
-            Debug.Log("Bande 3, point" + points[2 + i * 3].name);
+            Debug.Log("B3, point" + points[2 + i * 3].name);
         }
 
         points[numberByBande * 3] = grimPoint;

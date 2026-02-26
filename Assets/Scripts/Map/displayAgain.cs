@@ -69,9 +69,18 @@ public class displayAgain : MonoBehaviour
     private void GenObjets()
     {
         //1 pbstacle 2 cachettes 0 vide 
+        //int[] pattern1 = { 1, 0, 2, 0, 2, 1 };
+        //int[] pattern2 = { 2, 0, 1, 1, 0, 2 };
+        //int[] pattern3 = { 0, 2, 1, 0, 1, 0 };
+
+        //int[] pattern1 = { 1, 0, 2, 0, 2, 1 };
+        //int[] pattern2 = { 2, 0, 1, 2, 0, 1 };
+        //int[] pattern3 = { 0, 2, 1, 0, 1, 2 };
+
         int[] pattern1 = { 1, 0, 2, 0, 2, 1 };
-        int[] pattern2 = { 2, 0, 1, 1, 0, 2 };
-        int[] pattern3 = { 0, 2, 1, 0, 1, 0 };
+        int[] pattern2 = { 2, 1, 0, 2, 1, 0 };
+        int[] pattern3 = { 0, 2, 1, 0, 1, 2 };
+
         int[][] allPattern = { pattern1, pattern2, pattern3 }; 
 
         //ne pas repeter 2 bandes

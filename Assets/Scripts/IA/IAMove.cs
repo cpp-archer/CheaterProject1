@@ -176,7 +176,7 @@ public class IAMove : MonoBehaviour
 
             agent.isStopped = false;
             animatorIA.SetBool("isRunning", true);
-            agent.speed = 8f;
+            agent.speed = 10f;
 
             
             agent.SetDestination(target.position);

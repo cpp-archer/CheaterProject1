@@ -2344,7 +2344,7 @@ MonoBehaviour:
   m_text: "Vous devez, sans vous faire remarquer par l'horrible sorci\xE8re, aller
     lire le grimoire qui vous permettra de vous enfuire une fois revenu \xE0 votre
     place de d\xE9part.\n\nVous pouvez \xE9viter la m\xE9chante en vous aidant des
-    cachetes sur votre chemin. Mais attention, le chemin sera sem\xE9 d'embuches.\n\nBonne
+    cachettes sur votre chemin. Mais attention, le chemin sera sem\xE9 d'embuches.\n\nBonne
     chance jeune mage..."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e3f54f2386eacfb498711344712aeeef, type: 2}

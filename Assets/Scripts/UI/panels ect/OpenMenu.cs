@@ -22,12 +22,12 @@ public class OpenMenu : MonoBehaviour
 
     public void menuClick() //pour le click souris
     {
-        if (aidePanel.activeSelf || touchesPanel.activeSelf || aidePanel.activeSelf)
+        if (aidePanel.activeSelf || touchesPanel.activeSelf)
         {
             aidePanel.SetActive(false);
             touchesPanel.SetActive(false);
             menuOptions.SetActive(false);
-            aidePanelFirst.SetActive(false);
+           // aidePanelFirst.SetActive(false);
             roche.Play();
 
         }
@@ -53,12 +53,12 @@ public class OpenMenu : MonoBehaviour
 
     public void openMenu(InputAction.CallbackContext context) //pour btn clavier
     {
-        if(aidePanel.activeSelf || touchesPanel.activeSelf || aidePanelFirst.activeSelf)
+        if (aidePanel.activeSelf || touchesPanel.activeSelf)
         {
             aidePanel.SetActive(false);
             touchesPanel.SetActive(false);
             menuOptions.SetActive(false);
-            aidePanelFirst.SetActive(false);
+            //aidePanelFirst.SetActive(false);
             roche.Play();
         }
         menuOptions.SetActive(!menuOptions.activeSelf);

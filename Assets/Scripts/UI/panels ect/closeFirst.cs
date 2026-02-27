@@ -13,13 +13,12 @@ public class closeFirst : MonoBehaviour
 
     public void closeFirstPanel()
     {
-        first.SetActive(false);
-        
-    Debug.Log("ok fermé");
+        first.SetActive(false); 
+        Debug.Log("ok fermé");
+
         menu.SetActive(true);
         Time.timeScale = 1;
         roche.Play();
-
     }
 
 

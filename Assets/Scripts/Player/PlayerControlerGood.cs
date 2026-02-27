@@ -60,20 +60,6 @@ public class PlayerControlerGood : MonoBehaviour
         crouchRef.action.Disable();
     }
 
-    //void Start()
-    //{
-    //    //recuperation 
-    //    controller = GetComponent<CharacterController>();
-    //    animator = controller.GetComponent<Animator>();
-    //    //controller.height = 2f;
-
-    //    //canMove = false;
-    //    //animator.SetTrigger("StandUp");
-
-
-    //    StartCoroutine(playWalk());
-    //}
-
     IEnumerator Start()
     {
         controller = GetComponent<CharacterController>();
@@ -200,8 +186,6 @@ public class PlayerControlerGood : MonoBehaviour
     }
     IEnumerator playWalk()
     {
-        //sinon ca glitch ca le lance plusieurs fois
-        //if (!walkingSound.isPlaying)
         while (true)
         {
 

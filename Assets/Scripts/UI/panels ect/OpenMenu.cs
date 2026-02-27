@@ -39,8 +39,6 @@ public class OpenMenu : MonoBehaviour
         {
             Time.timeScale = 1;
         }
-
-
     }
 
     private void OnEnable()
@@ -71,7 +69,6 @@ public class OpenMenu : MonoBehaviour
         {
             Time.timeScale = 1;
         }
-
 
         Debug.Log(menuOptions.activeSelf);
         //Time.timeScale = 0;

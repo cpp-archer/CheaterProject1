@@ -12,40 +12,31 @@ public class CamTriggerSwitch : MonoBehaviour
     Collider cam2C;
     Collider cam3C;
 
-
     private int ordre=1;
 
     private void Start()
     {
-
         SwitchCam(cam1);
         ordre = 1;
-
     }
     private void OnTriggerStay(Collider other)
     {
-   
         //cam 1 au pont (2eme cam)
         if(other.tag== "wall2")
         {     
             SwitchCam(cam2);
             ordre = 2;
-
-          //  return;
         }
 
-       else if(other.tag == "wall3" && ordre == 2)
-        {
+       else if(other.tag == "wall3" && ordre == 2){
             SwitchCam(cam3);
             ordre = 3;
-
-        }
+       }
 
        else if(other.tag == "wall4" && ordre == 3)
         {
             SwitchCam(cam1);
             ordre = 1;
-
         }
     }
 

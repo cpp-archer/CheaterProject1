@@ -30,9 +30,6 @@ public class IAMove : MonoBehaviour
     private Transform[] currentBande;
     private Transform[] points;
 
-    //private int bandeIndex = 0;
-   // private int pointToGo = 0;
-
     public Transform grimPoint;
 
     //public Animator idleAnim;
@@ -128,10 +125,6 @@ public class IAMove : MonoBehaviour
         //distance
         float playerDistance = Vector3.Distance(target.position, transform.position);
 
-        //si le joueur est pas assez proche on fait nada
-        //if (playerDistance > viewDistance)
-        //    return;
-
 
         //angle
         Vector3 targetDir = target.position + Vector3.up * 3 - transform.position;
@@ -159,19 +152,6 @@ public class IAMove : MonoBehaviour
             }
         }
     }
-    //void DrawViewCone()
-    //{
-    //    int rayCount = 15;
-    //    float stepAngle = (viewAngle * 2) / rayCount;
-
-    //    for (int i = 0; i <= rayCount; i++)
-    //    {
-    //        float angle = -viewAngle + stepAngle * i;
-    //        Vector3 dir = Quaternion.Euler(0, angle, 0) * transform.forward;
-
-    //        Debug.DrawRay(transform.position, dir * viewDistance, Color.yellow);
-    //    }
-    //}
 
     IEnumerator loose()
     {surprise.Play();

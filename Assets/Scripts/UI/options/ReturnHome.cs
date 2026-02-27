@@ -9,5 +9,4 @@ public class ReturnHome : MonoBehaviour
         SceneManager.LoadScene("Home");
         Time.timeScale = 1;
     }
-
 }

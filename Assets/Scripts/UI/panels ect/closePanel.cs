@@ -11,8 +11,5 @@ public class closePanel : MonoBehaviour
         panelTclose.SetActive(false);
         Debug.Log("ok fermé");
         roche.Play();
-
     }
-
-
 }

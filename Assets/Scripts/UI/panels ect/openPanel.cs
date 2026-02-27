@@ -9,14 +9,12 @@ public class openPanel : MonoBehaviour
     void Start()
     {
         panelToOpen.SetActive(false);
-
     }
 
      public void OpenPanel()
      {
         panelToOpen.SetActive(true);
         roche.Play();
-
     }
 
 }

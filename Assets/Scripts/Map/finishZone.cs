@@ -31,7 +31,7 @@ public class finishZone : MonoBehaviour
     {
         if (other.CompareTag("player") && GrimLu.grimIsLu == true)
         { 
-            other.transform.position = finishSpawn[0].position;
+            //other.transform.position = finishSpawn[0].position;
             StartCoroutine(animeWin());
         }
     }
@@ -52,6 +52,8 @@ public class finishZone : MonoBehaviour
         zoneFinish.transform.parent = finishSpawn[rdm];
         zoneFinish.transform.localPosition = Vector3.zero;
         zoneFinish.SetActive(true);
+
+        transform.position = finishSpawn[rdm].position;
     }
 
 }

@@ -36,7 +36,6 @@ public class TriggerGrimoire : MonoBehaviour
     public GameObject progressBar;
     public Image fillImg;
 
-    private float readTime = 5f;
 
     public GameObject dejaLuPanel;
 

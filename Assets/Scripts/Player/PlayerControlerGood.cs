@@ -20,12 +20,12 @@ public class PlayerControlerGood : MonoBehaviour
     //param et etats du perso
     private float rotateSpeed = 20f;
     public float moveSpeed = 2f;
-    private bool rotated = false;
+    //private bool rotated = false;
     private bool crouched = false;
 
 
     [SerializeField] float gravite = -20f;
-    [SerializeField] float groundForce = -2f;
+    //[SerializeField] float groundForce = -2f;
     private float vertical;
 
     //animations
@@ -85,7 +85,7 @@ public class PlayerControlerGood : MonoBehaviour
     //rotate la souris
     private void Rotate()
     {      
-        rotated = true;
+        //rotated = true;
         float mouseRotation = rotationRef.action.ReadValue<float>();
         transform.Rotate(Vector3.up * Time.deltaTime * rotateSpeed * mouseRotation);
     }

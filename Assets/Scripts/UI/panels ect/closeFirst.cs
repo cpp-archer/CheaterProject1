@@ -5,10 +5,10 @@ public class closeFirst : MonoBehaviour
 
     public GameObject first;
     public AudioSource roche;
-    public GameObject menu;
+    public GameObject menuEsc;
     private void Start()
     {
-        menu.SetActive(false);
+        menuEsc.SetActive(false);
     }
 
     public void closeFirstPanel()
@@ -16,7 +16,8 @@ public class closeFirst : MonoBehaviour
         first.SetActive(false); 
         Debug.Log("ok fermé");
 
-        menu.SetActive(true);
+        menuEsc.SetActive(true);
+
         Time.timeScale = 1;
         roche.Play();
     }

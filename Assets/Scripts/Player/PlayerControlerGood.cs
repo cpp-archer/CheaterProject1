@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.UIElements;
 using System.Collections;
-using UnityEditor.Experimental.GraphView;
+
 
 public class PlayerControlerGood : MonoBehaviour
 {
@@ -42,7 +42,7 @@ public class PlayerControlerGood : MonoBehaviour
 
 
     public AudioSource walkingSound;
-    //public AudioSource wakingUp;
+    public AudioSource wakingUp;
     private Vector3 direction;
 
     private void OnEnable()
@@ -60,30 +60,18 @@ public class PlayerControlerGood : MonoBehaviour
         crouchRef.action.Disable();
     }
 
-    void Start()
+    IEnumerator Start()
     {
-        //recuperation 
         controller = GetComponent<CharacterController>();
         animator = controller.GetComponent<Animator>();
-        //controller.height = 2f;
 
-        //canMove = false;
-        //animator.SetTrigger("StandUp");
-
-
+        canMove = false;
+        animator.SetTrigger("StandUp");
+        yield return new WaitForSeconds(4f);
+        canMove = true;
+        wakingUp.Play();
         StartCoroutine(playWalk());
     }
-
-    //IEnumerator Start()
-    //{
-    //    controller = GetComponent<CharacterController>();
-    //    animator = controller.GetComponent<Animator>();
-
-    //    animator.SetTrigger("StandUp");
-    //    yield return new WaitForSeconds(6f);
-    //    canMove = true;
-    // wakingUp.Play();
-    //}
 
     void Update()
     {
@@ -118,11 +106,6 @@ public class PlayerControlerGood : MonoBehaviour
 
     private void Move()
     {
-        //if (!canMove)
-        //{
-        //    lastDirection = Vector3.zero;
-        //}
-
         Vector2 stickDirection = moveActionRef.action.ReadValue<Vector2>();
         //Vector3 direction = new Vector3(stickDirection.x, 0, stickDirection.y);
 
@@ -130,8 +113,6 @@ public class PlayerControlerGood : MonoBehaviour
        
         direction = Vector3.zero;
 
-
-   
         //eviter les diagonales (1,1) etc 
         if (stickDirection == Vector2.up) //(0,1)
         {
@@ -152,13 +133,6 @@ public class PlayerControlerGood : MonoBehaviour
         //donc si j'appuie sur 2keys ca correspond a aucune des conditions
 
         direction = lastDirection;
-
-        //if (direction != Vector3.zero && !crouched)
-        //{
-
-        //   StartCoroutine(playWalk());
-        //}
-
 
         //pour que le perso s'arrete
         if (stickDirection == Vector2.zero)
@@ -212,8 +186,6 @@ public class PlayerControlerGood : MonoBehaviour
     }
     IEnumerator playWalk()
     {
-        //sinon ca glitch ca le lance plusieurs fois
-        //if (!walkingSound.isPlaying)
         while (true)
         {
 
@@ -221,9 +193,9 @@ public class PlayerControlerGood : MonoBehaviour
             {
                 walkingSound.Play();
 
-                yield return new WaitForSeconds(2);
+                yield return new WaitForSeconds(0.7f);
             }
-            yield return new WaitForNextFrameUnit();
+            yield return null;
         }
     }
 }

@@ -1,33 +1,18 @@
+using System.Collections.Generic;
 using Unity.AI.Navigation;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class displayAgain : MonoBehaviour
 {
-
-    //float minDistance = 2.5f;
-
     public GameObject terrain;
-    public GameObject terrainPatrouille;
-
-    private Bounds bounds;
-    private Bounds boundsBalises;
-
-    //public GameObject[] objSpawn;
-    public Transform[] objPointsSpawn;
 
     //cachettes et obstacles
     public GameObject[] hides;
     public GameObject[] obstacles;
 
-    //pour l'ia et sa patrouille
-    //public Transform[] BalisesSpawnpoints;
-    //public GameObject balises;//DANS LA HIERARCHIE
-
     //navmesh
     private NavMeshSurface navMeshSurface;
-    //private NavMeshSurface navMesh2;
-    //private NavMeshSurface terrainPatrouilleMesh;
 
     //prefab du pont vers grimoire
     public GameObject ponts;
@@ -45,112 +30,104 @@ public class displayAgain : MonoBehaviour
     GameObject[] pattern3;
     GameObject[] pattern4;
 
-
+    //rocher grimoire
     public GameObject terrainGrim;
     private NavMeshSurface terrainGrimMesh;
 
     void Awake()
     {
+        //recup navmeshsurface
         navMeshSurface = terrain.GetComponent<NavMeshSurface>();
-        //terrainPatrouilleMesh = terrainPatrouille.GetComponent<NavMeshSurface>();
-
         terrainGrimMesh = terrainGrim.GetComponent<NavMeshSurface>();
-
-        bounds = terrain.GetComponent<Renderer>().bounds;
-        boundsBalises = terrainPatrouille.GetComponent<Renderer>().bounds;
 
         //generations des elements sur la map
         GenObjets();
-        //GenBalises();
         pagePont();
 
         //navmesh bake à l'awake
         navMeshSurface.BuildNavMesh();
         terrainGrimMesh.BuildNavMesh();
 
-        //terrainPatrouilleMesh.BuildNavMesh();
     }
 
-    //on genere sur la map les objets pour se cacher à des endoits random
+    //on genere les patterns des objets
     private void GenObjets()
     {
+        //test de patterns
+        //int[] pattern2 = { 2, 0, 1, 1, 0, 2 };
+        //int[] pattern3 = { 0, 2, 1, 0, 1, 0 };
+        //int[] pattern2 = { 2, 0, 1, 2, 0, 1 };
 
-        //1 pbstacle 2 cachettes 0 vide chemin
+
+        //1 pbstacle 2 cachettes 0 vide 
         int[] pattern1 = { 1, 0, 2, 0, 2, 1 };
-        int[] pattern2 = { 2, 0, 1, 1, 0, 2 };
-        int[] pattern3 = { 0, 2, 1, 0, 1, 0 };
-        // int[] pattern4 = { 0, 2, 0, 1, 2, 0 };
-        int[][] allPattern = { pattern1, pattern2, pattern3 }; //pattern4 };
+        int[] pattern2 = { 2, 1, 0, 2, 1, 0 };
+        int[] pattern3 = { 0, 2, 1, 0, 1, 2 };
 
-        int rdm1 = Random.Range(0, 3);
-        int rdm2 = Random.Range(0, 3);
-        int rdm3 = Random.Range(0, 3);
+        int[][] allPattern = { pattern1, pattern2, pattern3 }; 
 
+        //ne pas repeter 2 bandes
+        int[] ordre = { 0, 1, 2 };//on randomise l'ordre de ce tab
 
-        GenBandes(bande1, allPattern[rdm1]);
-        GenBandes(bande2, allPattern[rdm2]);
-        GenBandes(bande3, allPattern[rdm3]);
+        for(int i = 0; i< ordre.Length; i++)//i = rdm 1,2,3
+        {
+            int rdm = Random.Range(0, ordre.Length);
+            int save = ordre[i];
+            ordre[i] = ordre[rdm];
+            ordre[rdm] = save;//swap index et nb
+        }
+
+        GenBandes(bande1, allPattern[ordre[0]]);
+        GenBandes(bande2, allPattern[ordre[1]]);
+        GenBandes(bande3, allPattern[ordre[2]]);
+ 
     }
+    //pattern peut se repeter
+    //int rdm1 = Random.Range(0, 3);
+    //int rdm2 = Random.Range(0, 3);
+    //int rdm3 = Random.Range(0, 3);
+    //GenBandes(bande1, allPattern[rdm1]);
+    //GenBandes(bande2, allPattern[rdm2]);
+    //GenBandes(bande3, allPattern[rdm3]);
 
-
+    //on place les objets sur chaque bande selon le pattern
     private void GenBandes(Transform[] bande, int[] pattern)
     {
         //bool lastObject = false;
         for (int i = 0; i < bande.Length; i++)
         {
             GameObject prefab = null;
-    
-            //if(!lastObject){ 
-                
-                if (pattern[i] == 1){
-                    int rdm = Random.Range(0, obstacles.Length);
-                    prefab = obstacles[rdm];
-                }
 
-                if (pattern[i] == 2){
-                    int rdm = Random.Range(0, hides.Length);
-                    prefab = hides[rdm];
-                }
-           // }
+             if (pattern[i] == 1) { 
+                int rdm = Random.Range(0, obstacles.Length);
+                prefab = obstacles[rdm];
+             }
+
+            if (pattern[i] == 2) { 
+                int rdm = Random.Range(0, hides.Length);
+                prefab = hides[rdm];
+            }
 
             if (prefab != null) { 
-                GameObject obj = Instantiate(prefab);// (objSpawn[i]);
+                GameObject obj = Instantiate(prefab);
                 obj.transform.position = bande[i].position;
                 obj.transform.parent = terrain.transform;
-                //lastObject = true;
-
              }
-            //else
-            //    lastObject = false;
         }
     }
-        //on genere sur la map les balises de patrouille de li'a
-    //private void GenBalises()
-    //{
 
-    //    for (int i = 0; i < BalisesSpawnpoints.Length-1; i++)
-    //    {
-    //        float randomX = Random.Range(boundsBalises.min.x, boundsBalises.max.x);
-    //        float randomZ = Random.Range(boundsBalises.min.z, boundsBalises.max.z);
-    //        float randomY = boundsBalises.max.y;
-
-    //        BalisesSpawnpoints[i].position = new Vector3(randomX, randomY, randomZ);
-    //        BalisesSpawnpoints[i].transform.parent = balises.transform;
-    //    }
-    //}
 
     //on genere le pont a une des 3 pos possible et on deplace le grimoire devant le pont
     private void pagePont()
     {
         int rdm = Random.Range(0, pontsPos.Length);
-        //print(rdm);
 
         GameObject pontPref = Instantiate(ponts);
         pontPref.transform.parent = pontsPos[rdm];
         pontPref.transform.localPosition = Vector3.zero;
 
         Vector3 grimPos = new Vector3(pontPref.transform.position.x, pontPref.transform.position.y, pontPref.transform.position.z + 1.5f);
-
+        
         grimoire.transform.position = grimPos;
         grimoire.transform.rotation = pontPref.transform.rotation;
         navMeshSurface.BuildNavMesh();

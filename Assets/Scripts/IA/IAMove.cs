@@ -1,4 +1,4 @@
-
+﻿
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
@@ -127,7 +127,7 @@ public class IAMove : MonoBehaviour
 
 
         //angle
-        Vector3 targetDir = target.position + Vector3.up * 2 - transform.position;
+        Vector3 targetDir = target.position + Vector3.up * 3 - transform.position;
         Debug.DrawRay(transform.position, targetDir, Color.red, Time.deltaTime);
 
         float angle = Vector3.Angle(targetDir, transform.forward);
@@ -174,10 +174,11 @@ public class IAMove : MonoBehaviour
             
             yield return new WaitForSeconds(2f);
 
+            agent.isStopped = false;
             animatorIA.SetBool("isRunning", true);
             agent.speed = 8f;
 
-            agent.isStopped = false;
+            
             agent.SetDestination(target.position);
 
             Debug.Log("perdu");

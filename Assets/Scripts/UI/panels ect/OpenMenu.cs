@@ -9,6 +9,7 @@ public class OpenMenu : MonoBehaviour
     public GameObject touchesPanel;
     public GameObject aidePanel;
 
+    public AudioSource roche;
 
     void Start()
     {
@@ -27,6 +28,8 @@ public class OpenMenu : MonoBehaviour
             touchesPanel.SetActive(false);
             menuOptions.SetActive(false);
             aidePanelFirst.SetActive(false);
+            roche.Play();
+
         }
         menuOptions.SetActive(!menuOptions.activeSelf);
 
@@ -58,6 +61,7 @@ public class OpenMenu : MonoBehaviour
             touchesPanel.SetActive(false);
             menuOptions.SetActive(false);
             aidePanelFirst.SetActive(false);
+            roche.Play();
         }
         menuOptions.SetActive(!menuOptions.activeSelf);
 

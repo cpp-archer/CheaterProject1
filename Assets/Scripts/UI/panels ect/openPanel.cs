@@ -4,6 +4,8 @@ using UnityEngine;
 public class openPanel : MonoBehaviour
 {
     public GameObject panelToOpen;
+    public AudioSource roche;
+
     void Start()
     {
         panelToOpen.SetActive(false);
@@ -13,6 +15,8 @@ public class openPanel : MonoBehaviour
      public void OpenPanel()
      {
         panelToOpen.SetActive(true);
-     }
-    
+        roche.Play();
+
+    }
+
 }

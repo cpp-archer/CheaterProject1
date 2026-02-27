@@ -5,6 +5,7 @@ using System.Collections;
 using UnityEngine.UIElements;
 using UnityEngine.InputSystem.XR;
 using Unity.AI.Navigation;
+using UnityEditor;
 
 public class IAMove : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class IAMove : MonoBehaviour
     private bool playerDetected;
 
     public GameObject panelLoose;
-
+    public GameObject esc;
     //bandes
     public Transform[] bande1;
     public Transform[] bande2;
@@ -41,6 +42,9 @@ public class IAMove : MonoBehaviour
    private Animator animatorIA;
 
     public AudioSource gaspSound;
+    public AudioSource surprise;
+    public AudioSource hearbeat;
+
 
     public Transform[] iaSpawn;
     void Start()
@@ -51,6 +55,7 @@ public class IAMove : MonoBehaviour
         agent.enabled = true;
 
         panelLoose.SetActive(false);
+        
         animatorIA = GetComponent<Animator>();
 
         animatorIA.SetBool("isIdle", false);
@@ -171,25 +176,30 @@ public class IAMove : MonoBehaviour
     {
         if(playerDetected == true)
         {
+            surprise.Play();
+            
             agent.isStopped = true;
             animatorIA.SetBool("isPointing", true);
-            
+          //  hearbeat.Play();
+
             yield return new WaitForSeconds(2f);
+          
 
             agent.isStopped = false;
             animatorIA.SetBool("isRunning", true);
             agent.speed = 10f;
-
             
             agent.SetDestination(target.position);
 
             Debug.Log("perdu");
 
-            gaspSound.Play();
+            //hearbeat.Stop();
+          
 
             yield return new WaitForSeconds(2f);
-           
+            gaspSound.Play();
             panelLoose.SetActive(true);
+            
             Time.timeScale = 0f;
 
         }

@@ -147,6 +147,7 @@ public class IAMove : MonoBehaviour
         {
             if (hit.collider.gameObject.tag == "player") //l'ia nous suit
             {
+               
                 Debug.Log("I see you");
                 playerDetected = true;
                 StartCoroutine(loose());
@@ -173,14 +174,14 @@ public class IAMove : MonoBehaviour
     //}
 
     IEnumerator loose()
-    {
+    {surprise.Play();
         if(playerDetected == true)
         {
-            surprise.Play();
+
             
             agent.isStopped = true;
             animatorIA.SetBool("isPointing", true);
-          //  hearbeat.Play();
+          hearbeat.Play();
 
             yield return new WaitForSeconds(2f);
           
@@ -193,7 +194,7 @@ public class IAMove : MonoBehaviour
 
             Debug.Log("perdu");
 
-            //hearbeat.Stop();
+            hearbeat.Stop();
           
 
             yield return new WaitForSeconds(2f);

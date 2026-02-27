@@ -4,6 +4,7 @@ using UnityEngine.AI;
 using System.Collections;
 using UnityEngine.UIElements;
 using UnityEngine.InputSystem.XR;
+using Unity.AI.Navigation;
 
 public class IAMove : MonoBehaviour
 {
@@ -41,10 +42,11 @@ public class IAMove : MonoBehaviour
 
     public AudioSource gaspSound;
 
+    public Transform[] iaSpawn;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-
+        spawnIA();
         target = GameObject.FindGameObjectWithTag("player").transform;
         agent.enabled = true;
 
@@ -216,6 +218,14 @@ public class IAMove : MonoBehaviour
         agent.isStopped = false;
         GotoNextPoint();
         waiting = false;
+    }
+
+    private void spawnIA()
+    {
+        int rdm = Random.Range(0, iaSpawn.Length);
+        agent.enabled = false;
+        transform.position = iaSpawn[rdm].position;
+        agent.enabled = true;
     }
 
 }

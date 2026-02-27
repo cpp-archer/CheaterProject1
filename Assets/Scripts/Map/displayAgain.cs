@@ -9,7 +9,7 @@ public class displayAgain : MonoBehaviour
     //float minDistance = 2.5f;
 
     public GameObject terrain;
-    public GameObject terrainPatrouille;
+   // public GameObject terrainPatrouille;
 
     //private Bounds bounds;
     //private Bounds boundsBalises;
@@ -162,7 +162,7 @@ public class displayAgain : MonoBehaviour
         pontPref.transform.localPosition = Vector3.zero;
 
         Vector3 grimPos = new Vector3(pontPref.transform.position.x, pontPref.transform.position.y, pontPref.transform.position.z + 1.5f);
-
+        
         grimoire.transform.position = grimPos;
         grimoire.transform.rotation = pontPref.transform.rotation;
         navMeshSurface.BuildNavMesh();

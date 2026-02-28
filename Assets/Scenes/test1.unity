@@ -7619,7 +7619,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.1
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 91128aceeb4c26f48a472ca7690a17eb, type: 2}
   m_BuildHeightMesh: 0
@@ -7950,7 +7950,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 726d900112dcab143a5695ee3a3bae60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IaMove
-  goal: {fileID: 1529953190}
+  target: {fileID: 0}
+  viewDistance: 10
+  viewAngle: 20
+  panelLoose: {fileID: 0}
+  esc: {fileID: 0}
+  bande1: []
+  bande2: []
+  bande3: []
+  grimPoint: {fileID: 0}
+  waitAtBalise: 0
+  gaspSound: {fileID: 0}
+  surprise: {fileID: 0}
+  hearbeat: {fileID: 0}
+  iaSpawn: []
 --- !u!43 &1359428272
 Mesh:
   m_ObjectHideFlags: 0

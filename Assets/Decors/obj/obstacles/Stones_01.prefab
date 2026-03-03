@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8621827786403787882}
   - component: {fileID: 5839472666633882010}
+  - component: {fileID: 144589620928199023}
   m_Layer: 0
   m_Name: Stones_01
   m_TagString: Untagged
@@ -56,6 +57,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.32666582, y: 0.46282238, z: 0.43688482}
   m_Center: {x: -0.049162682, y: 0.023479968, z: 0.0792917}
+--- !u!208 &144589620928199023
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7261055877933802793}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.23, y: 0.195, z: 0.3}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &2893068297924039868
 PrefabInstance:
   m_ObjectHideFlags: 0

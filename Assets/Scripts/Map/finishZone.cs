@@ -41,6 +41,7 @@ public class finishZone : MonoBehaviour
         yield return new WaitForSeconds(1f);
         panelWin.SetActive(true);
         Debug.Log("winnn");
+        Time.timeScale = 0f;
     }
 
     private void GenfinishZone()
